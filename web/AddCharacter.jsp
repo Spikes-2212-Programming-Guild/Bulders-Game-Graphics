@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
 <%@page import="sql.CharacterSaver"%>
 <%@page import="members.Grade"%>
 <%@page import="members.Member"%>
@@ -28,24 +29,34 @@
             Saving character! <br/>
         </div>
         <%
-            Member m;
-            switch (grade) {
-                case 5:
-                    m = new Member(Grade.FIFTH, name);
+            boolean nameIsValid = true;
+            for (String s : constants.INVALID_NAMES) {
+                if (s.equalsIgnoreCase(name)) {
+                    out.print("Invalid name!");
+                    nameIsValid = false;
                     break;
-                case 7:
-                    m = new Member(Grade.SEVENTH, name);
-                    break;
-                case 8:
-                    m = new Member(Grade.EIGHTH, name);
-                    break;
-                default:
-                    m = null;
-                    out.print("Problem saving character...");
+                }
             }
-            CharacterSaver characterSaver = new CharacterSaver(m);
-            characterSaver.saveCharacter();
-            response.setHeader("Location", "");
+            if (nameIsValid) {
+                Member m;
+                switch (grade) {
+                    case 5:
+                        m = new Member(Grade.FIFTH, name);
+                        break;
+                    case 7:
+                        m = new Member(Grade.SEVENTH, name);
+                        break;
+                    case 8:
+                        m = new Member(Grade.EIGHTH, name);
+                        break;
+                    default:
+                        m = null;
+                        out.print("Problem saving character...");
+                }
+                CharacterSaver characterSaver = new CharacterSaver(m);
+                characterSaver.saveCharacter();
+                response.setHeader("Location", "");
+            }
         } else {
         %>
         <h1 style="text-align: center">

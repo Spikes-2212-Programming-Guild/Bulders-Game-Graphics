@@ -13,4 +13,5 @@ public class constants {
     public static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/BuilderGame";
     public static final String USER = "root";
     public static final String PASS = "ttt123";
+    public static final String[] INVALID_NAMES= new String[]{"Quest","Character","Skill","Reward","Grades","FIFTH","SEVENTH","EIGHTH"};
 }
