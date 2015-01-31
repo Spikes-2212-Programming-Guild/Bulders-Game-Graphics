@@ -4,6 +4,8 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="members.Skill"%>
 <%@page import="sql.CharacterLoader"%>
 <%@page import="members.Member"%>
 <%@page import="sql.QuestLoader"%>
@@ -52,6 +54,24 @@
                 <td>
                     <table>
                         <caption>Skill Requirement</caption>
+                        <tr>
+                            <td>Skill</td>
+                            <td>Level</td>
+                            <td><input type="button" value="Add Skill" onclick="window.location = 'AddSkillRequirementToQuest.jsp?quest=<%=questName%>'"></td>
+                        </tr>
+
+                        <%for (Map.Entry<Skill, Integer> entry : quest.getSkillRequirments().entrySet()) {%>
+                        <tr>
+                        <form action="EditSkillRequirement.jsp">
+                            <input type="hidden" value="<%=questName%>" name="questName"/> 
+                            <input type="hidden" value="<%=entry.getKey().getName()%>" name="oldSkill"/>
+                            <td><input type="text" value="<%=entry.getKey().getName()%>" name="skillName"/></td>
+                            <td><input type="number" value="<%=entry.getValue()%>"name="level"/></td>
+                            <td><input type="submit" value="Commit Line"</td>
+                            </tr>
+                        </form>
+
+                        <%}%>
                     </table>
                 </td>
                 <td>
