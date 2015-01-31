@@ -43,7 +43,7 @@
             <table style="width: 100%">
                 <tr>
                     <td>
-                        <table style="width: 33%;">
+                        <table style="width: 40%;">
                             <tr>
                             <tr>
                                 <td>Quest Name</td>
