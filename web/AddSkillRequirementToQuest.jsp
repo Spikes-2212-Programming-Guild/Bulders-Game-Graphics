@@ -16,7 +16,6 @@
         <title>Lelouch</title>
     </head>
     <body>
-        <h1>Choose Your Quest...</h1> <br/>
         <%!
             String quest;
             String skill;
@@ -27,6 +26,7 @@
         <%
             if (quest == null) {
         %>
+        <h1>Choose Your Quest...</h1> <br/>
         <form method="post" action="AddSkillRequirementToQuest.jsp">
             <select name="quest" style="font-size: larger">
                 <%
