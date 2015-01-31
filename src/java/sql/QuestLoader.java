@@ -29,6 +29,14 @@ public class QuestLoader {
     public Set<Quest> getQuests() {
         return quests;
     }
+    public Quest getQuest(String name){
+        for(Quest q:quests){
+            if(q.getName().equalsIgnoreCase(name)){
+                return q;
+            }
+        }
+        return null;
+    }
 
     public void readQuests() throws SQLException {
         DatabaseMetaData md = gurnyStaff.getConn().getMetaData();
