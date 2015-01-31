@@ -32,19 +32,19 @@ public class QuestSaver {
     }
 
     public static String getQuestGrades(Quest quest) {
-        return "Quest" + quest.getName() + "Grades";
+        return ("Quest" + quest.getName() + "Grades").replaceAll(" ", "_");
     }
 
     public static String getQuestSkills(Quest quest) {
-        return "Quest" + quest.getName() + "Skills";
+        return ("Quest" + quest.getName() + "Skills").replaceAll(" ", "_");
     }
 
     public static String getQuestRewards(Quest quest) {
-        return "Quest" + quest.getName() + "Rewards";
+        return ("Quest" + quest.getName() + "Rewards").replaceAll(" ", "_");
     }
 
     public static String getQuestParty(Quest quest) {
-        return "Quest" + quest.getName() + "Party";
+        return ("Quest" + quest.getName() + "Party").replaceAll(" ", "_");
     }
 
     public void saveQuest() {
