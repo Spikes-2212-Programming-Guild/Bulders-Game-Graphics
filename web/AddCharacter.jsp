@@ -55,8 +55,19 @@
                 }
                 CharacterSaver characterSaver = new CharacterSaver(m);
                 characterSaver.saveCharacter();
-                response.setHeader("Location", "");
-            }
+        %>
+        <div style="text-align: center;font-size: larger">
+            Character Saved! <br/>
+            Redirecting to skill management... <br/>
+        </div>
+        <%
+        %>
+        <script>
+            setTimeout(function () {
+                window.location = "AddSkillToCharacter.jsp"
+            }, 1000);
+        </script>
+        <%            }
         } else {
         %>
         <h1 style="text-align: center">
