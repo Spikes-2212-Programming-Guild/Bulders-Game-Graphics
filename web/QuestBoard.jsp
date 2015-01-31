@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.QuestSaver"%>
 <%@page import="quests.PartyBuilder"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
@@ -34,13 +35,15 @@
                 }
                 PartyBuilder partyBuilder = new PartyBuilder(questLoader.getQuest(request.getParameter("quest")), availableCharacters);
                 partyBuilder.buildParty();
+                QuestSaver qs = new QuestSaver(questLoader.getQuest(request.getParameter("quest")));
+                qs.saveQuest();
             }
         %>
         <form action="QuestBoard.jsp">
             <table style="width: 100%">
                 <tr>
                     <td>
-                        <table style="width: 50%;">
+                        <table style="width: 33%;">
                             <tr>
                             <tr>
                                 <td>Quest Name</td>
@@ -68,7 +71,7 @@
                             %>
                         </table></td>
                     <td>
-                        <table style="width: 50%;position: relative;right: 50%;">
+                        <table style="width: 33%;position: relative;right: 66%;">
                             <tr>
                                 <td>Character Name</td>
                                 <td>Present</td>
@@ -97,6 +100,10 @@
                                 </td>
                             </tr>
                         </table>
+                    </td>
+                    <td>
+                        <input type="button" value="Add Character" onclick="window.location = 'AddCharacter.jsp'"/> <br/>
+                        <input type="button" value="Add Quest" onclick="window.location = 'AddQuest.jsp'"/> <br/>
                     </td>
                 </tr>
             </table>

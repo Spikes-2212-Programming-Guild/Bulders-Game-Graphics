@@ -58,7 +58,9 @@ public class Quest {
     }
 
     public void addMember(Member m) {
-        party.add(m);
+        if (m != null) {
+            party.add(m);
+        }
     }
 
     public Map<Skill, Integer> getSkillRequirments() {
