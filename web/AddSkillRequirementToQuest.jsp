@@ -26,7 +26,8 @@
         <%
             if (quest == null) {
         %>
-        <h1>Choose Your Quest...</h1> <br/>
+        <h1>Choose Your Quest...</h1>
+        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/><br/>
         <form method="post" action="AddSkillRequirementToQuest.jsp">
             <select name="quest" style="font-size: larger">
                 <%
