@@ -39,7 +39,7 @@
             }
         %>
         <script>
-            window.location = "EditCharacter.jsp";
+            window.location = "EditCharacter.jsp?character=<%=character%>";
         </script>
     </body>
 </html>
