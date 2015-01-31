@@ -60,8 +60,6 @@
             Character Saved! <br/>
             Redirecting to skill management... <br/>
         </div>
-        <%
-        %>
         <script>
             setTimeout(function () {
                 window.location = "AddSkillToCharacter.jsp"
