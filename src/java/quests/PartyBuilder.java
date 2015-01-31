@@ -102,6 +102,7 @@ public class PartyBuilder {
     }
 
     public void buildParty() {
+        quest.getParty().clear();
         boolean hasPartyLeader = false;
         boolean partyLeaderIsSeventh = false;
         if (quest.getGradeRequirments().get(Grade.EIGHTH) != null) {
