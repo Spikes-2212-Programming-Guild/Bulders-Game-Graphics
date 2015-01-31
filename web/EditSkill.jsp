@@ -26,16 +26,24 @@
             skillName = request.getParameter("skillName");
             oldSkill = request.getParameter("oldSkill");
             if (character != null && skillName != null && oldSkill != null && request.getParameter("skillLevel") != null && request.getParameter("skillEXP") != null) {
-                skillLevel = Integer.valueOf(request.getParameter("skillLevel"));
-                skillEXP = Integer.valueOf(request.getParameter("skillEXP"));
-                GurnyStaff gurnyStaff = new GurnyStaff();
-                CharacterLoader characterLoader = new CharacterLoader();
-                characterLoader.readCharacters();
-                gurnyStaff.insertUpdateDelete("delete from " + sql.CharacterSaver.getCharacterSkills(characterLoader.getMember(character)) + " where name=\"" + oldSkill + "\";");
-                characterLoader.readCharacters();
-                characterLoader.getMember(character).addSkill(skillName, skillLevel, skillEXP);
-                CharacterSaver cs = new CharacterSaver(characterLoader.getMember(character));
-                cs.saveCharacter();
+                if (skillName.equals("")) {
+                    GurnyStaff gurnyStaff = new GurnyStaff();
+                    CharacterLoader characterLoader = new CharacterLoader();
+                    characterLoader.readCharacters();
+                    gurnyStaff.insertUpdateDelete("delete from " + sql.CharacterSaver.getCharacterSkills(characterLoader.getMember(character)) + " where name=\"" + oldSkill + "\";");
+                    characterLoader.readCharacters();
+                } else {
+                    skillLevel = Integer.valueOf(request.getParameter("skillLevel"));
+                    skillEXP = Integer.valueOf(request.getParameter("skillEXP"));
+                    GurnyStaff gurnyStaff = new GurnyStaff();
+                    CharacterLoader characterLoader = new CharacterLoader();
+                    characterLoader.readCharacters();
+                    gurnyStaff.insertUpdateDelete("delete from " + sql.CharacterSaver.getCharacterSkills(characterLoader.getMember(character)) + " where name=\"" + oldSkill + "\";");
+                    characterLoader.readCharacters();
+                    characterLoader.getMember(character).addSkill(skillName, skillLevel, skillEXP);
+                    CharacterSaver cs = new CharacterSaver(characterLoader.getMember(character));
+                    cs.saveCharacter();
+                }
             }
         %>
         <script>
