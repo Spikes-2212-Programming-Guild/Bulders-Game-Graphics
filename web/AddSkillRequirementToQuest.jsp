@@ -27,7 +27,7 @@
         <%
             if (quest == null) {
         %>
-        <form method="post" action="AddSkillRequirmentToQuest.jsp">
+        <form method="post" action="AddSkillRequirementToQuest.jsp">
             <select name="quest" style="font-size: larger">
                 <%
                     QuestLoader questLoader = new QuestLoader();
@@ -45,7 +45,7 @@
         } else if (skill == null) {
         %>
         <h1 style="text-align: center">Choose <del>Arbitrary</del> FAIR Skill Requirements</h1>
-        <form method="post" action="AddSkillRequirmentToQuest.jsp">
+        <form method="post" action="AddSkillRequirementToQuest.jsp">
             <input type="hidden" value="<%=quest%>" name="quest" />
             Enter skill name: <input type="text" name="skill" value="Enter Skill name..." id='name' onfocus="document.getElementById('name').value = ''"/> <br/>
             Enter Required Level: <input type="number" name="level" value="1" /> <br/>
@@ -65,7 +65,7 @@
         <form method = "post">
             <input type="hidden" name="character" value="<%= quest%>" />
             <input type="submit" value="Add Another Requirement!" />
-            <input type="button" value="Choose another quest!" onclick="window.location = 'AddSkillRequirmentToQuest.jsp'"/>
+            <input type="button" value="Choose another quest!" onclick="window.location = 'AddSkillRequirementToQuest.jsp'"/>
         </form>
         <%
                     }
