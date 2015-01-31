@@ -7,6 +7,7 @@ package sql;
 
 import java.util.Map;
 import members.Grade;
+import members.Member;
 import members.Skill;
 import quests.Quest;
 
@@ -42,15 +43,21 @@ public class QuestSaver {
         return "Quest" + quest.getName() + "Rewards";
     }
 
+    public static String getQuestParty(Quest quest) {
+        return "Quest" + quest.getName() + "Party";
+    }
+
     public void saveQuest() {
 //        delete old tables
-        gurnyStaff.insertUpdateDelete("drop table " + getQuestSkills(quest)+";");
-        gurnyStaff.insertUpdateDelete("drop table " + getQuestRewards(quest)+";");
-        gurnyStaff.insertUpdateDelete("drop table " + getQuestGrades(quest)+";");
+        gurnyStaff.insertUpdateDelete("drop table " + getQuestSkills(quest) + ";");
+        gurnyStaff.insertUpdateDelete("drop table " + getQuestRewards(quest) + ";");
+        gurnyStaff.insertUpdateDelete("drop table " + getQuestGrades(quest) + ";");
+        gurnyStaff.insertUpdateDelete("drop table " + getQuestParty(quest) + ";");
 //        create tables
         gurnyStaff.insertUpdateDelete("create table " + getQuestSkills(quest) + "(name varchar(50), level int);");
         gurnyStaff.insertUpdateDelete("create table " + getQuestRewards(quest) + "(name varchar(50), exp int);");
         gurnyStaff.insertUpdateDelete("create table " + getQuestGrades(quest) + "(grade varchar(10), amount int);");
+        gurnyStaff.insertUpdateDelete("create table " + getQuestParty(quest) + "(members varchar(20)");
 
         for (Map.Entry<Grade, Integer> grade : quest.getGradeRequirments().entrySet()) {
             gurnyStaff.insertUpdateDelete("insert into " + getQuestGrades(quest) + " values(\"" + grade.getKey() + "\"," + grade.getValue() + ");");
@@ -60,6 +67,9 @@ public class QuestSaver {
         }
         for (Map.Entry<Skill, Integer> reward : quest.getRewards().entrySet()) {
             gurnyStaff.insertUpdateDelete("insert into " + getQuestRewards(quest) + " values(\"" + reward.getKey().getName() + "\"," + reward.getValue() + ");");
+        }
+        for (Member m : quest.getParty()) {
+            gurnyStaff.insertUpdateDelete("insert into " + getQuestParty(quest) + " values(\"" + m.getName() + "\");");
         }
     }
 }

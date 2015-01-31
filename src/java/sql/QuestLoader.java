@@ -39,6 +39,8 @@ public class QuestLoader {
     }
 
     public void readQuests() throws SQLException {
+        CharacterLoader cl = new CharacterLoader();
+        cl.readCharacters();
         DatabaseMetaData md = gurnyStaff.getConn().getMetaData();
         ResultSet rs = md.getTables(null, null, "%", null);
         while (rs.next()) {
@@ -51,6 +53,7 @@ public class QuestLoader {
                     String[][] grades = gurnyStaff.select("select * from " + QuestSaver.getQuestGrades(quest));
                     String[][] skills = gurnyStaff.select("select * from " + QuestSaver.getQuestSkills(quest));
                     String[][] rewards = gurnyStaff.select("select * from " + QuestSaver.getQuestRewards(quest));
+                    String[][] party = gurnyStaff.select("select * from " + QuestSaver.getQuestParty(quest));
                     for (String[] strings : grades) {
                         quest.addGradeRequirment(Grade.valueOf(strings[0]), Integer.valueOf(strings[1]));
                     }
@@ -59,6 +62,9 @@ public class QuestLoader {
                     }
                     for (String[] strings : rewards) {
                         quest.addReward(new Skill(strings[0]), Integer.valueOf(strings[1]));
+                    }
+                    for(String[] strings : party){
+                        quest.addMember(cl.getMember(strings[0]));
                     }
                     try {
                         quests.add(quest);
