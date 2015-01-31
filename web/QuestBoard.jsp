@@ -71,7 +71,7 @@
                             %>
                         </table></td>
                     <td>
-                        <table style="width: 33%;position: relative;right: 66%;">
+                        <table style="width: 40%;position: relative;right: 66%;">
                             <tr>
                                 <td>Character Name</td>
                                 <td>Present</td>

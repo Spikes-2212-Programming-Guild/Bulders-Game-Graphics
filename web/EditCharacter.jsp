@@ -51,7 +51,7 @@
         <%
             } %>
     </table>
-            <input type="submit" value="Add Skill" onclick="window.location = 'AddSkillToCharacter.jsp?character=<%=character%>'"/>
+            <input type="submit" value="Add Skill" onclick="window.location = 'AddSkillToCharacter.jsp?character=<%=character%> '"/>
     <%
     } else {
     %>
