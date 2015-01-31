@@ -4,6 +4,10 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
+<%@page import="sql.QuestSaver"%>
+<%@page import="members.Grade"%>
+<%@page import="quests.Quest"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,11 +18,13 @@
     <body>
         <%!
             String name;
-            String grade5;
-            String grade7;
-            String grade8;
+            int grade5;
+            int grade7;
+            int grade8;
         %>
-        <%name = request.getParameter("name");%>
+        <%
+            name = request.getParameter("name");
+        %>
         <%
             if (name == null) {
         %>
@@ -30,7 +36,7 @@
             <input type="submit" value="Move to Requirments!" name="submit" />
         </form>
         <%
-        } else {
+        } else if (request.getParameter("grade5") == null) {
         %>
         <h1 style="text-align: center">Choose <del>Size</del> GRADE Requirements!</h1> <br/>
         <form method ="post" action="AddQuest.jsp" id="requirements">
@@ -42,7 +48,36 @@
             EIGHTH: <input type="number" name="grade8" value="0" style="position: relative; left: 13px"/> <br/>
             <input type="text"/>
         </form>
+        <%
+        } else {
+            boolean nameIsValid = true;
+            for (String s : constants.INVALID_NAMES) {
+                if (s.equalsIgnoreCase(name)) {
+                    out.print("Invalid name!");
+                    nameIsValid = false;
+                    break;
+                }
+            }
+            if (nameIsValid) {
+                grade5 = Integer.valueOf(request.getParameter("grade5"));
+                grade7 = Integer.valueOf(request.getParameter("grade7"));
+                grade8 = Integer.valueOf(request.getParameter("grade8"));
+                Quest q = new Quest(name);
+                q.addGradeRequirment(Grade.FIFTH, grade5);
+                q.addGradeRequirment(Grade.SEVENTH, grade7);
+                q.addGradeRequirment(Grade.EIGHTH, grade8);
+                QuestSaver qs = new QuestSaver(q);
+                qs.saveQuest();
+            }%>
+        <div style="text-align: center;font-size: larger">
+            Quest Saved! <br/>
+            Redirecting to skill requirements... <br/>
+        </div>
+        <script>
+            setTimeout(function () {
+                window.location = "AddSkillRequirmentToQuest.jsp";
+            }, 1000);
+        </script>
         <%}%>
-    </form>
-</body>
+    </body>
 </html>
