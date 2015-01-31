@@ -49,27 +49,30 @@
             </form>
         </tr>
         <%
-            }
-        } else {
-        %>
-        <h1>Select a character:</h1> <br/>
-        <form method="post" action="EditCharacter.jsp">
-            <select name="character" style="font-size: larger">
-                <%
-                    CharacterLoader characterLoader = new CharacterLoader();
-                    characterLoader.readCharacters();
-                    for (Member m : characterLoader.getCharacters()) {
-                %>
-                <option value="<%=m.getName()%>"><%=m.getName()%></option>
-                <%
-                    }
-                %>
-            </select>
-            <input type="submit" value="I choose you!" style="font-size: larger"/>
-        </form>
-        <%
-            }
-        %>
+            } %>
     </table>
+            <input type="submit" value="Add Skill" onclick="window.location = 'AddSkillToCharacter.jsp?character=<%=character%>'"/>
+    <%
+    } else {
+    %>
+    <h1>Select a character:</h1> <br/>
+    <form method="post" action="EditCharacter.jsp">
+        <select name="character" style="font-size: larger">
+            <%
+                CharacterLoader characterLoader = new CharacterLoader();
+                characterLoader.readCharacters();
+                for (Member m : characterLoader.getCharacters()) {
+            %>
+            <option value="<%=m.getName()%>"><%=m.getName()%></option>
+            <%
+                }
+            %>
+        </select>
+        <input type="submit" value="I choose you!" style="font-size: larger"/>
+    </form>
+    <%
+        }
+    %>
+
 </body>
 </html>
