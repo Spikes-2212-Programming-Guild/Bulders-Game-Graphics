@@ -25,6 +25,14 @@ public class CharacterLoader {
     public Set<Member> getCharacters() {
         return characters;
     }
+    public Member getMember(String name){
+        for(Member m :characters){
+            if(m.getName().equalsIgnoreCase(name)){
+                return m;
+            }
+        }
+        return null;
+    }
 
     public void readCharacters() throws SQLException {
         DatabaseMetaData md = gurnyStaff.getConn().getMetaData();
