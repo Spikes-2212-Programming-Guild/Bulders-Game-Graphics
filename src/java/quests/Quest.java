@@ -80,6 +80,15 @@ public class Quest {
         }
         skillRequirments.remove(log);
     }
+    public void removeReward(String name){
+        Skill log = new Skill(null);
+        for (Map.Entry<Skill, Integer> entry: rewards.entrySet()) {
+            if(entry.getKey().getName().equals(name)){
+                log = entry.getKey();
+            }
+        }
+        skillRequirments.remove(log);
+    }
 
     public Map<Skill, Integer> getSkillRequirments() {
         return Collections.unmodifiableMap(skillRequirments);
