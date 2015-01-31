@@ -62,8 +62,8 @@
                     qs.saveQuest();
         %>
         <h1>Added skill!</h1> <br/>
-        <form method = "post">
-            <input type="hidden" name="character" value="<%= quest%>" />
+        <form method = "post" action="AddSkillRequirementToQuest.jsp">
+            <input type="hidden" name="quest" value="<%= quest%>" />
             <input type="submit" value="Add Another Requirement!" />
             <input type="button" value="Choose another quest!" onclick="window.location = 'AddSkillRequirementToQuest.jsp'"/>
         </form>
