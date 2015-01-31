@@ -54,7 +54,7 @@
                                 for (Quest q : questLoader.getQuests()) {
                             %>
                             <tr>
-                                <td><%=q.getName()%></td>
+                                <td><a style="color: whitesmoke;" href="EditQuest.jsp?questName=<%=q.getName()%>"><%=q.getName()%></a></td>
                                 <td>
                                     <%
                                         for (Member m : q.getParty()) {
