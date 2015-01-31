@@ -35,6 +35,7 @@ public class CharacterLoader {
     }
 
     public void readCharacters() throws SQLException {
+        characters = new HashSet<>();
         DatabaseMetaData md = gurnyStaff.getConn().getMetaData();
         ResultSet rs = md.getTables(null, null, "%", null);
         while (rs.next()) {

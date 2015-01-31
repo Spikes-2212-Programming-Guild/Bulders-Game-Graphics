@@ -29,9 +29,10 @@ public class QuestLoader {
     public Set<Quest> getQuests() {
         return quests;
     }
-    public Quest getQuest(String name){
-        for(Quest q:quests){
-            if(q.getName().equalsIgnoreCase(name)){
+
+    public Quest getQuest(String name) {
+        for (Quest q : quests) {
+            if (q.getName().equalsIgnoreCase(name)) {
                 return q;
             }
         }
@@ -39,6 +40,7 @@ public class QuestLoader {
     }
 
     public void readQuests() throws SQLException {
+        quests = new HashSet<>();
         CharacterLoader cl = new CharacterLoader();
         cl.readCharacters();
         DatabaseMetaData md = gurnyStaff.getConn().getMetaData();
@@ -63,7 +65,7 @@ public class QuestLoader {
                     for (String[] strings : rewards) {
                         quest.addReward(new Skill(strings[0]), Integer.valueOf(strings[1]));
                     }
-                    for(String[] strings : party){
+                    for (String[] strings : party) {
                         quest.addMember(cl.getMember(strings[0]));
                     }
                     try {
