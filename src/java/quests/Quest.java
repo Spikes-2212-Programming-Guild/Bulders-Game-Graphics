@@ -63,6 +63,14 @@ public class Quest {
         }
     }
 
+    public void removeMember(String name) {
+        for (Member m : party) {
+            if(m.getName().equalsIgnoreCase(name)){
+                party.remove(m);
+            }
+        }
+    }
+
     public Map<Skill, Integer> getSkillRequirments() {
         return Collections.unmodifiableMap(skillRequirments);
     }
