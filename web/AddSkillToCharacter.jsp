@@ -53,17 +53,17 @@
             CharacterLoader characterLoader = new CharacterLoader();
             characterLoader.readCharacters();
             for (Member m : characterLoader.getCharacters()) {
-                if (m.getName().equalsIgnoreCase(character) ){
+                if (m.getName().equalsIgnoreCase(character)) {
                     m.addSkill(request.getParameter("skillName"), Integer.valueOf(request.getParameter("skillLevel")), Integer.valueOf(request.getParameter("skillEXP")));
                     CharacterSaver characterSaver = new CharacterSaver(m);
                     characterSaver.saveCharacter();
         %>
         <h1>Added skill!</h1> <br/>
-        <form>
+        <form method = "post">
             <input type="hidden" name="character" value="<%= character%>" />
             <input type="submit" value="Add Another!" />
         </form>
-            <input type="submit" value="Choose another character!" onclick="window.location = 'AddSkillToCharacter.jsp'">
+        <input type="submit" value="Choose another character!" onclick="window.location = 'AddSkillToCharacter.jsp'">
         <%
                     }
                 }
