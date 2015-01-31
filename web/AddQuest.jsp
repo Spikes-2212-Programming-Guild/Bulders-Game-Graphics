@@ -40,13 +40,12 @@
         %>
         <h1 style="text-align: center">Choose <del>Size</del> GRADE Requirements!</h1> <br/>
         <form method ="post" action="AddQuest.jsp" id="requirements">
-            <input type="hidden" value="<%=name%>"/>
+            <input type="hidden" name="name" value="<%=name%>"/>
             Grade Requirements: 
             <input type="submit" style="position: relative; left: 120px; top: 43px" value="Choose Your Just Rewards!"/> <br/>
             FIFTH: <input type="number" name="grade5" value="0" style="position: relative; left: 28px" /> <br/>
             SEVENTH: <input type="number" name="grade7" value="0" /> <br/>
             EIGHTH: <input type="number" name="grade8" value="0" style="position: relative; left: 13px"/> <br/>
-            <input type="text"/>
         </form>
         <%
         } else {
