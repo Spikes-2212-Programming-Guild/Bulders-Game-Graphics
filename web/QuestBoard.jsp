@@ -80,7 +80,7 @@
                                 for (Member m : characterLoader.getCharacters()) {
                             %>
                             <tr>
-                                <td><%=m.getName()%></td>
+                                <td><a style="color: whitesmoke;" href="EditCharacter.jsp?character=<%=m.getName()%>"><%=m.getName()%></a></td>
                                 <td><input type="checkbox" name="<%=m.getName()%>" value="<%=m.getName()%>" <%=request.getParameter("checkAll")%>/></td>
                             </tr>
                             <%
