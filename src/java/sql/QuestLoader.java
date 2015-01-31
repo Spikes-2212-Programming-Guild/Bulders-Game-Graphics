@@ -47,7 +47,7 @@ public class QuestLoader {
             Quest quest = null;
             String currentTable = rs.getString(3);
             if (currentTable.contains("Quest")) {
-                quest = new Quest(currentTable.replaceAll("Quest", "").replaceAll("Grades", "").replaceAll("Skills", "").replaceAll("Rewards", ""));//get rid of all the suffixes
+                quest = new Quest(currentTable.replaceAll("Quest", "").replaceAll("Grades", "").replaceAll("Skills", "").replaceAll("Rewards", "").replace("Party", ""));//get rid of all the suffixes
                 if (!questsLoaded.contains(quest.getName())) {
                     questsLoaded.add(quest.getName());
                     String[][] grades = gurnyStaff.select("select * from " + QuestSaver.getQuestGrades(quest));

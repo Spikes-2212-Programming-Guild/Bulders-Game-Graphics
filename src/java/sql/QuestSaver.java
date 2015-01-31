@@ -57,7 +57,7 @@ public class QuestSaver {
         gurnyStaff.insertUpdateDelete("create table " + getQuestSkills(quest) + "(name varchar(50), level int);");
         gurnyStaff.insertUpdateDelete("create table " + getQuestRewards(quest) + "(name varchar(50), exp int);");
         gurnyStaff.insertUpdateDelete("create table " + getQuestGrades(quest) + "(grade varchar(10), amount int);");
-        gurnyStaff.insertUpdateDelete("create table " + getQuestParty(quest) + "(members varchar(20)");
+        gurnyStaff.insertUpdateDelete("create table " + getQuestParty(quest) + "(members varchar(20));");
 
         for (Map.Entry<Grade, Integer> grade : quest.getGradeRequirments().entrySet()) {
             gurnyStaff.insertUpdateDelete("insert into " + getQuestGrades(quest) + " values(\"" + grade.getKey() + "\"," + grade.getValue() + ");");
