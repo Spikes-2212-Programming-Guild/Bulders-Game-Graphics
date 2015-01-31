@@ -65,10 +65,20 @@ public class Quest {
 
     public void removeMember(String name) {
         for (Member m : party) {
-            if(m.getName().equalsIgnoreCase(name)){
+            if (m.getName().equalsIgnoreCase(name)) {
                 party.remove(m);
             }
         }
+    }
+
+    public void removeSkill(String name) {
+        Skill log = new Skill(null);
+        for (Map.Entry<Skill, Integer> entry: skillRequirments.entrySet()) {
+            if(entry.getKey().getName().equals(name)){
+                log = entry.getKey();
+            }
+        }
+        skillRequirments.remove(log);
     }
 
     public Map<Skill, Integer> getSkillRequirments() {
