@@ -76,8 +76,12 @@
                 </td>
                 <td>
                     <table>
-                        <caption>Grade Requirement</caption>
-
+                        <caption>Grade Requirements</caption>
+                        <tr>
+                            <td>Grade</td>
+                            <td>Requirement</td>
+                            <td></td>
+                        </tr>
                     </table>
                 </td>
                 <td>
