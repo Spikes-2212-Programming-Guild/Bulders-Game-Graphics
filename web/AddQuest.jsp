@@ -63,9 +63,9 @@
                 grade7 = Integer.valueOf(request.getParameter("grade7"));
                 grade8 = Integer.valueOf(request.getParameter("grade8"));
                 Quest q = new Quest(name);
-                q.addGradeRequirment(Grade.FIFTH, grade5);
-                q.addGradeRequirment(Grade.SEVENTH, grade7);
-                q.addGradeRequirment(Grade.EIGHTH, grade8);
+                q.setGradeRequirement(Grade.FIFTH, grade5);
+                q.setGradeRequirement(Grade.SEVENTH, grade7);
+                q.setGradeRequirement(Grade.EIGHTH, grade8);
                 QuestSaver qs = new QuestSaver(q);
                 qs.saveQuest();
             }%>
