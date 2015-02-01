@@ -34,5 +34,8 @@
             QuestSaver qs = new QuestSaver(quest);
             qs.deleteQuest();
         %>
+        <script>
+            window.location = 'QuestBoard.jsp'
+        </script>
     </body>
 </html>
