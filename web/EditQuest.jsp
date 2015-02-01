@@ -162,6 +162,10 @@
                 </td>
             </tr>
         </table>
+                <form method="post" action="FinishQuest.jsp">
+                    <input type="hidden" name="questName" value="<%=questName%>"/>
+                    <input type="submit" value="Finish him!" style="position: relative;left: 50%; top: 30px"/>
+                </form>
         <%}%>
     </body>
 </html>
