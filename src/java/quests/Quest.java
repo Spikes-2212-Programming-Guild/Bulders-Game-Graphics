@@ -47,10 +47,8 @@ public class Quest {
         skillRequirments.put(skill, level);
     }
 
-    public void addGradeRequirment(Grade grade, int count) {
-        if (gradeRequirments.get(grade) == null) {
+    public void setGradeRequirement(Grade grade, int count) {
             gradeRequirments.put(grade, count);
-        }
     }
 
     public void addReward(Skill skill, int exp) {

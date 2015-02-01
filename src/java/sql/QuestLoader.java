@@ -57,7 +57,7 @@ public class QuestLoader {
                     String[][] rewards = gurnyStaff.select("select * from " + QuestSaver.getQuestRewards(quest));
                     String[][] party = gurnyStaff.select("select * from " + QuestSaver.getQuestParty(quest));
                     for (String[] strings : grades) {
-                        quest.addGradeRequirment(Grade.valueOf(strings[0]), Integer.valueOf(strings[1]));
+                        quest.setGradeRequirement(Grade.valueOf(strings[0]), Integer.valueOf(strings[1]));
                     }
                     for (String[] strings : skills) {
                         quest.addSkillRequirment(new Skill(strings[0]), Integer.valueOf(strings[1]));
