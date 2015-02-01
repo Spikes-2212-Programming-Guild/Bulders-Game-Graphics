@@ -62,10 +62,16 @@ public class Member {
     }
 
     public void addExp(String skillName, int exp) {
+        boolean foundSkill = false;
         for (Skill s : skills) {
             if (s.getName().equalsIgnoreCase(skillName)) {
                 s.addExp(exp);
+                foundSkill = true;
             }
+        }
+//        If they don't have the skill, we will give it to them together with the EXP
+        if(!foundSkill){
+            this.addSkill(skillName, 1, exp);
         }
     }
 
