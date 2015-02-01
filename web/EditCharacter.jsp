@@ -49,9 +49,13 @@
             </form>
         </tr>
         <%
-            } %>
+            }%>
     </table>
-            <input type="submit" value="Add Skill" onclick="window.location = 'AddSkillToCharacter.jsp?character=<%=character%> '"/>
+    <input type="submit" value="Add Skill" onclick="window.location = 'AddSkillToCharacter.jsp?character=<%=character%> '"/>
+    <form method="post" action="deleteCharacter.jsp">
+        <input type="hidden" name="characterName" value="<%=character%>"/>
+        <input type="submit" value="Finish him!" style="position: relative;left: 50%; top: 30px"/>
+    </form>
     <%
     } else {
     %>
