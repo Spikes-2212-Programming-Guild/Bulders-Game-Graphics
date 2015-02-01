@@ -84,21 +84,24 @@
                             <td></td>
                         </tr>
                         <tr>
-                        <form method="post" action="">
+                        <form method="post" name="questName" action="EditGradeRequirements.jsp">
+                            <input type="hidden" name="questName" value="<%=questName%>"/>
                             <td><input type="text" readonly value="FIFTH" name="gradeName"/></td>
                             <td><input type="text" value="<%=quest.getGradeRequirments().get(Grade.FIFTH)%>" name="gradeCount"/></td>
                             <td><input type="submit" value="Commit Line"/></td>
                         </form>
                         </tr>
                         <tr>
-                        <form method="post" action="">
+                        <form method="post" action="EditGradeRequirements.jsp">
+                            <input type="hidden" name="questName" value="<%=questName%>"/>
                             <td><input type="text" readonly value="SEVENTH" name="gradeName"/></td>
                             <td><input type="text" value="<%=quest.getGradeRequirments().get(Grade.SEVENTH)%>" name="gradeCount"/></td>
                             <td><input type="submit" value="Commit Line"/></td>
                         </form>
                         </tr>
                         <tr>
-                        <form method="post" action="">
+                        <form method="post" action="EditGradeRequirements.jsp">
+                            <input type="hidden" name="questName" value="<%=questName%>"/>
                             <td><input type="text" readonly value="EIGHTH" name="gradeName"/></td>
                             <td><input type="text" value="<%=quest.getGradeRequirments().get(Grade.EIGHTH)%>" name="gradeCount"/></td>
                             <td><input type="submit" value="Commit Line"/></td>
