@@ -74,7 +74,7 @@ public class Quest {
     public void removeSkill(String name) {
         Skill log = new Skill(null);
         for (Map.Entry<Skill, Integer> entry: skillRequirments.entrySet()) {
-            if(entry.getKey().getName().equals(name)){
+            if(entry.getKey().getName().equalsIgnoreCase(name)){
                 log = entry.getKey();
             }
         }
@@ -83,7 +83,7 @@ public class Quest {
     public void removeReward(String name){
         Skill log = new Skill(null);
         for (Map.Entry<Skill, Integer> entry: rewards.entrySet()) {
-            if(entry.getKey().getName().equals(name)){
+            if(entry.getKey().getName().equalsIgnoreCase(name)){
                 log = entry.getKey();
             }
         }
