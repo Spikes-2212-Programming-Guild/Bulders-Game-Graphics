@@ -24,7 +24,7 @@
             questName = request.getParameter("questName");
             if (questName == null) {
         %>
-        <h1>Select a quest:</h1> 
+        <h1 style="text-align: center">Select a quest:</h1> 
         <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/><br/>
         <form method="post" action="EditQuest.jsp">
             <select name="questName" style="font-size: larger">
@@ -47,13 +47,13 @@
             CharacterLoader cl = new CharacterLoader();
             cl.readCharacters();
         %>
-        <h1>Editing an Annoyance Named: <%=questName%></h1>
+        <h1 style="text-align: center">Editing an Annoyance Named: <%=questName%></h1>
         <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <table style="width: 100%">
             <tr>
                 <td>
                     <table>
-                        <caption>Skill Requirement</caption>
+                        <caption><u>Skill Requirement</u></caption>
                         <tr>
                             <td>Skill</td>
                             <td>Level</td>
@@ -76,7 +76,7 @@
                 </td>
                 <td>
                     <table>
-                        <caption>Grade Requirements</caption>
+                        <caption><u>Grade Requirements</u></caption>
                         <tr>
                             <td>Grade</td>
                             <td>Requirement</td>
@@ -86,7 +86,7 @@
                 </td>
                 <td>
                     <table>
-                        <caption>Rewards</caption>
+                        <caption><u>Rewards</u></caption>
                         <tr>
                             <td>Skill</td>
                             <td>EXP</td>
@@ -107,7 +107,7 @@
                 </td>
                 <td>
                     <table>
-                        <caption>Current Party</caption>
+                        <caption><u>Current Party</u></caption>
                         <% for (Member m : quest.getParty()) {%>
                         <form action="EditParty.jsp">
                             <input type="hidden" value="<%=m.getName()%>" name="oldCharacter"/>
