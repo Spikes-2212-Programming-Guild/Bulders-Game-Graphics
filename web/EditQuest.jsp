@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="members.Grade"%>
 <%@page import="java.util.Map"%>
 <%@page import="members.Skill"%>
 <%@page import="sql.CharacterLoader"%>
@@ -82,6 +83,15 @@
                             <td>Requirement</td>
                             <td></td>
                         </tr>
+                        <%for (Map.Entry<Grade, Integer> entry : quest.getGradeRequirments().entrySet()) {%>
+                        <tr>
+                        <form method="post" action="">
+                            <td><input type="text" readonly value="<%=entry.getKey()%>" name="gradeName"/></td>
+                            <td><input type="text" value="<%=entry.getValue()%>" name="gradeCount"/></td>
+                            <td><input type="submit" value="Commit Line"/></td>
+                        </form>
+                        </tr>
+                        <%}%>
                     </table>
                 </td>
                 <td>
@@ -100,15 +110,15 @@
                             <td><input type="text" value="<%=entry.getKey().getName()%>" name="skillName"/></td>
                             <td><input type="number" value="<%=entry.getValue()%>"name="EXP"/></td>
                             <td><input type="submit" value="Commit Line"</td>
-                            </tr>
-                        </form>
+                         </form>
+                        </tr>
                         <%}%>
                     </table>
                 </td>
                 <td>
                     <table>
                         <caption><u>Current Party</u></caption>
-                        <% for (Member m : quest.getParty()) {%>
+                                <% for (Member m : quest.getParty()) {%>
                         <form action="EditParty.jsp">
                             <input type="hidden" value="<%=m.getName()%>" name="oldCharacter"/>
                             <input type="hidden" name="quest" value="<%=quest.getName()%>" />
