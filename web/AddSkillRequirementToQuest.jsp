@@ -62,11 +62,13 @@
                     QuestSaver qs = new QuestSaver(q);
                     qs.saveQuest();
         %>
-        <h1>Added skill!</h1> <br/>
+        <h1>Added skill!</h1> 
+        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/><br/>
         <form method = "post" action="AddSkillRequirementToQuest.jsp">
             <input type="hidden" name="quest" value="<%= quest%>" />
             <input type="submit" value="Add Another Requirement!" />
             <input type="button" value="Choose another quest!" onclick="window.location = 'AddSkillRequirementToQuest.jsp'"/>
+            <input type="button" value="Move to editing" onclick="window.location = 'EditQuest.jsp?questName=<%=quest%>'"/>
         </form>
         <%
                     }
