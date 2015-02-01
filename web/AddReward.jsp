@@ -21,7 +21,7 @@
         <%questName = request.getParameter("questName");
             skillName = request.getParameter("skillName"); %>
         <%if (questName == null) {%>
-        <h1>Choose Your Quest...</h1>
+        <h1 style="text-align: center">Choose Your Quest...</h1>
         <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/><br/>
         <form method="post" action="AddReward.jsp">
             <select name="questName" style="font-size: larger">
@@ -38,11 +38,11 @@
             <input type="submit" value="Vanguard, advance!" />
         </form>
         <%} else if (skillName == null) {%>
-        <h1>It's all about the money of: <%=questName%></h1>
+        <h1 style="text-align: center">It's all about the money of: <%=questName%></h1>
         <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <form action="AddReward.jsp" method="post">
             <input type="hidden" name="questName" value="<%=questName%>"/> 
-            <input type="text" name="skillName" value="Enter skill name..." /> <br/>
+            <input type="text" name="skillName" value="Enter skill name..." id="name" onfocus="document.getElementById('name').value = ''"/> <br/>
             <input type="number" name="EXP" value="0"/> <br/>
             <input type="submit" value="Ca$h Money!" />
         </form>
@@ -57,11 +57,13 @@
                     qs.saveQuest();
                 }
             }%>
-        <h1>Added reward!</h1> <br/>
+        <h1 style="text-align: center">Added reward!</h1> 
+        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/><br/>
         <form method = "post" action="AddReward.jsp">
             <input type="hidden" name="quest" value="<%=questName%>" />
             <input type="submit" value="Add Another Requirement!" />
             <input type="button" value="Choose another quest!" onclick="window.location = 'AddReward.jsp'"/>
+            <input type="button" value="Go to editing..." onclick="window.location = 'EditQuest.jsp?questName=<%=questName%>'"
         </form>
         <%}%>
     </body>
