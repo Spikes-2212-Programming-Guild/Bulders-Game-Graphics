@@ -47,12 +47,17 @@ public class QuestSaver {
         return ("Quest" + quest.getName() + "Party").replaceAll(" ", "_");
     }
 
-    public void saveQuest() {
-//        delete old tables
+    public void deleteQuest() {
+//        delete all the tables
         gurnyStaff.insertUpdateDelete("drop table " + getQuestSkills(quest) + ";");
         gurnyStaff.insertUpdateDelete("drop table " + getQuestRewards(quest) + ";");
         gurnyStaff.insertUpdateDelete("drop table " + getQuestGrades(quest) + ";");
         gurnyStaff.insertUpdateDelete("drop table " + getQuestParty(quest) + ";");
+    }
+
+    public void saveQuest() {
+//        delete old tables
+        deleteQuest();
 //        create tables
         gurnyStaff.insertUpdateDelete("create table " + getQuestSkills(quest) + "(name varchar(50), level int);");
         gurnyStaff.insertUpdateDelete("create table " + getQuestRewards(quest) + "(name varchar(50), exp int);");
