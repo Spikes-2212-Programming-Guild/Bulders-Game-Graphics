@@ -75,7 +75,7 @@
         </div>
         <script>
             setTimeout(function () {
-                window.location = "AddSkillRequirementToQuest.jsp";
+                window.location = "AddSkillRequirementToQuest.jsp?quest=<%=name%>";
             }, 1000);
         </script>
         <%}%>
