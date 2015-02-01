@@ -83,6 +83,22 @@
                 <td>
                     <table>
                         <caption>Rewards</caption>
+                        <tr>
+                            <td>Skill</td>
+                            <td>EXP</td>
+                            <td><input type="button" onclick="window.location = 'AddReward.jsp?questName=<%=questName%>'" value="Add Rewards"/></td>
+                        </tr>
+                        <%for (Map.Entry<Skill, Integer> entry : quest.getRewards().entrySet()) {%>
+                        <tr>
+                        <form action="EditRewards.jsp">
+                            <input type="hidden" value="<%=questName%>" name="questName"/> 
+                            <input type="hidden" value="<%=entry.getKey().getName()%>" name="oldSkill"/>
+                            <td><input type="text" value="<%=entry.getKey().getName()%>" name="skillName"/></td>
+                            <td><input type="number" value="<%=entry.getValue()%>"name="EXP"/></td>
+                            <td><input type="submit" value="Commit Line"</td>
+                            </tr>
+                        </form>
+                        <%}%>
                     </table>
                 </td>
                 <td>
