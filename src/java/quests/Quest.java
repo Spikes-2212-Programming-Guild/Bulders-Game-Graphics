@@ -87,7 +87,7 @@ public class Quest {
                 log = entry.getKey();
             }
         }
-        skillRequirments.remove(log);
+        rewards.remove(log);
     }
 
     public Map<Skill, Integer> getSkillRequirments() {
