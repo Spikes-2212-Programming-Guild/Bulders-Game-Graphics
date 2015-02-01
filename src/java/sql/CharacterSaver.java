@@ -25,9 +25,14 @@ public class CharacterSaver {
         return "Character" + member.getName() + "Skills" + member.getGrade();
     }
 
+    public void deleteCharacter() {
+//        delete the table
+        gurnyStaff.insertUpdateDelete("drop table " + getCharacterSkills(character) + ";");
+    }
+
     public void saveCharacter() {
 //        delete old table
-        gurnyStaff.insertUpdateDelete("drop table " + getCharacterSkills(character) + ";");
+        deleteCharacter();
 //        create table
         gurnyStaff.insertUpdateDelete("create table " + getCharacterSkills(character) + "(name varchar(50), level int, exp int);");
         for (Skill skill : character.getSkills()) {
