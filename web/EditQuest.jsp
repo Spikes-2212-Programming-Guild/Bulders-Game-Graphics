@@ -83,15 +83,27 @@
                             <td>Requirement</td>
                             <td></td>
                         </tr>
-                        <%for (Map.Entry<Grade, Integer> entry : quest.getGradeRequirments().entrySet()) {%>
                         <tr>
                         <form method="post" action="">
-                            <td><input type="text" readonly value="<%=entry.getKey()%>" name="gradeName"/></td>
-                            <td><input type="text" value="<%=entry.getValue()%>" name="gradeCount"/></td>
+                            <td><input type="text" readonly value="FIFTH" name="gradeName"/></td>
+                            <td><input type="text" value="<%=quest.getGradeRequirments().get(Grade.FIFTH)%>" name="gradeCount"/></td>
                             <td><input type="submit" value="Commit Line"/></td>
                         </form>
                         </tr>
-                        <%}%>
+                        <tr>
+                        <form method="post" action="">
+                            <td><input type="text" readonly value="SEVENTH" name="gradeName"/></td>
+                            <td><input type="text" value="<%=quest.getGradeRequirments().get(Grade.SEVENTH)%>" name="gradeCount"/></td>
+                            <td><input type="submit" value="Commit Line"/></td>
+                        </form>
+                        </tr>
+                        <tr>
+                        <form method="post" action="">
+                            <td><input type="text" readonly value="EIGHTH" name="gradeName"/></td>
+                            <td><input type="text" value="<%=quest.getGradeRequirments().get(Grade.EIGHTH)%>" name="gradeCount"/></td>
+                            <td><input type="submit" value="Commit Line"/></td>
+                        </form>
+                        </tr>
                     </table>
                 </td>
                 <td>
