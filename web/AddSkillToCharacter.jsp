@@ -54,7 +54,7 @@
         } else {
             character = request.getParameter("character");
             CharacterLoader characterLoader = new CharacterLoader();
-            characterLoader.readCharacters();
+            characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
             for (Member m : characterLoader.getCharacters()) {
                 if (m.getName().equalsIgnoreCase(character)) {
                     m.addSkill(request.getParameter("skillName"), Integer.valueOf(request.getParameter("skillLevel")), Integer.valueOf(request.getParameter("skillEXP")));

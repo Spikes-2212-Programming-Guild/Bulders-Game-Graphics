@@ -50,7 +50,7 @@
         <%
         } else {
             QuestLoader questLoader = new QuestLoader();
-            questLoader.readQuests();
+            questLoader.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
             for (Quest q : questLoader.getQuests()) {
                 if (q.getName().equalsIgnoreCase(questName)) {
                     q.addReward(new Skill(skillName), Integer.valueOf(request.getParameter("EXP")));

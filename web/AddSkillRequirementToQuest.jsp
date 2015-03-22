@@ -56,7 +56,7 @@
         <%
         } else {
             QuestLoader questLoader = new QuestLoader();
-            questLoader.readQuests();
+            questLoader.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
             for (Quest q : questLoader.getQuests()) {
                 if (q.getName().equalsIgnoreCase(quest)) {
                     q.addSkillRequirment(new Skill(skill), Integer.valueOf(request.getParameter("level")));

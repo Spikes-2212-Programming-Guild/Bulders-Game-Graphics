@@ -65,7 +65,7 @@
         <select name="character" style="font-size: larger">
             <%
                 CharacterLoader characterLoader = new CharacterLoader();
-                characterLoader.readCharacters();
+                characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
                 for (Member m : characterLoader.getCharacters()) {
             %>
             <option value="<%=m.getName()%>"><%=m.getName()%></option>
