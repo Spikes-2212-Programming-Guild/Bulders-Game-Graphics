@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
 <%@page import="members.Skill"%>
 <%@page import="members.Member"%>
 <%@page import="sql.CharacterLoader"%>
@@ -21,7 +22,7 @@
             character = request.getParameter("character");
             if (character != null) {
                 CharacterLoader characterLoader = new CharacterLoader();
-                characterLoader.readCharacters();
+                characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
                 member = characterLoader.getMember(character);
         %>
         <h1 style="text-align: center">Currently Playing with the Life of: <%=character%></h1> 

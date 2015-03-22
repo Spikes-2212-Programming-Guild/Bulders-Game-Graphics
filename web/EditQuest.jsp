@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
 <%@page import="members.Grade"%>
 <%@page import="java.util.Map"%>
 <%@page import="members.Skill"%>
@@ -31,7 +32,7 @@
             <select name="questName" style="font-size: larger">
                 <%
                     QuestLoader ql = new QuestLoader();
-                    ql.readQuests();
+                    ql.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
                     for (Quest q : ql.getQuests()) {
                 %>
                 <option value="<%=q.getName()%>"><%=q.getName()%></option>
@@ -43,10 +44,10 @@
         </form><%
         } else {
             QuestLoader questLoader = new QuestLoader();
-            questLoader.readQuests();
+            questLoader.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
             quest = questLoader.getQuest(questName);
             CharacterLoader cl = new CharacterLoader();
-            cl.readCharacters();
+            cl.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
         %>
         <h1 style="text-align: center">Editing an Annoyance Named: <%=questName%></h1>
         <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
