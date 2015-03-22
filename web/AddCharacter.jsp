@@ -62,9 +62,7 @@
             Redirecting to skill management... <br/>
         </div>
         <script>
-            setTimeout(function () {
-                window.location = "AddSkillToCharacter.jsp"
-            }, 1000);
+                window.location = "AddSkillToCharacter.jsp?character=<%=name%>";
         </script>
         <%            }
         } else {

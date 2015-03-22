@@ -39,7 +39,8 @@
         } else if (request.getParameter("skillName") == null && request.getParameter("skillLevel") == null && request.getParameter("skillEXP") == null) {
             character = request.getParameter("character");
         %>
-        <h1>Selected Character: <%=character%></h1> <br/>
+        <h1>Selected Character: <%=character%></h1> 
+        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/> <br/>
         <form method="post" action="AddSkillToCharacter.jsp" style="text-align: left">
             <h3>Add a skill:</h3> <br/>
             <input type="hidden" name="character" value="<%=character%>"/>
@@ -59,12 +60,13 @@
                     CharacterSaver characterSaver = new CharacterSaver(m);
                     characterSaver.saveCharacter();
         %>
-        <h1>Added skill!</h1> <br/>
+        <h1>Added skill!</h1>
         <form method = "post">
             <input type="hidden" name="character" value="<%= character%>" />
             <input type="submit" value="Add Another!" />
         </form>
         <input type="submit" value="Choose another character!" onclick="window.location = 'AddSkillToCharacter.jsp'">
+        <input type="button" value="Go to Editing!" onclick="window.location = 'EditCharacter.jsp?character=<%=character%>'"/>
         <%
                     }
                 }
