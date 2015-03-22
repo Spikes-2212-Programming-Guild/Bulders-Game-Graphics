@@ -17,11 +17,13 @@ public class Member {
 
     private Grade grade;
     private final String name;
+    private final int teamNumber;
     private Set<Skill> skills = new HashSet<>();
 
-    public Member(Grade grade, String name) {
+    public Member(Grade grade, String name, int teamNumber) {
         this.grade = grade;
         this.name = name;
+        this.teamNumber = teamNumber;
     }
 
     public void addSkill(Skill s) {
@@ -43,6 +45,11 @@ public class Member {
     public Set<Skill> getSkills() {
         return Collections.unmodifiableSet(skills);
     }
+
+    public int getTeamNumber() {
+        return teamNumber;
+    }
+    
 
     public int getSkillLevel(String name) {
         for (Skill s : skills) {

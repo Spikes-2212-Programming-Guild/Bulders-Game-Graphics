@@ -34,17 +34,17 @@ public class CharacterLoader {
         return null;
     }
 
-    public void readCharacters() throws SQLException {
+    public void readCharacters(int teamNumber) throws SQLException {
         characters = new HashSet<>();
         DatabaseMetaData md = gurnyStaff.getConn().getMetaData();
         ResultSet rs = md.getTables(null, null, "%", null);
         while (rs.next()) {
             Member character = null;
             String currentTable = rs.getString(3);
-            if (currentTable.contains("Character")) {
+            if (currentTable.contains("Character") && currentTable.contains(String.valueOf(teamNumber))) {
                 String name = currentTable.replaceAll("Character", "").replaceAll("Skills", "").replaceAll("FIFTH", "").replaceAll("SEVENTH", "").replaceAll("EIGHTH", "");
                 Grade grade = Grade.valueOf(currentTable.replaceAll(name, "").replaceAll("Character", "").replaceAll("Skills", ""));
-                character = new Member(grade, name);//get rid of all the suffixes
+                character = new Member(grade, name, teamNumber);//get rid of all the suffixes
                 String[][] skills = gurnyStaff.select("select * from " + CharacterSaver.getCharacterSkills(character));
                 for (String[] strings : skills) {
                     character.addSkill(strings[0], Integer.valueOf(strings[1]), Integer.valueOf(strings[2]));

@@ -39,7 +39,7 @@ public class PartyBuilder {
     }
 
     public void addBestSuited(Set<Member> members) {
-        Member bestSuited = new Member(null, null);
+        Member bestSuited = new Member(null, null, 0);
         int bestSuitness = Integer.MAX_VALUE;
         for (Member member : members) {
             int currentSuitness = 0;
@@ -62,7 +62,7 @@ public class PartyBuilder {
     }
 
     public void addBestSuitedAbove(Set<Member> members) {
-        Member bestSuited = new Member(null, null);
+        Member bestSuited = new Member(null, null,0);
         int bestSuitness = Integer.MAX_VALUE;
         for (Member member : members) {
             int currentSuitness = 0;
@@ -84,7 +84,7 @@ public class PartyBuilder {
     }
 
     public void addLeastSkilled(Set<Member> members) {
-        Member leastSkilled = new Member(null, null);
+        Member leastSkilled = new Member(null, null,0);
         int skillTotal = Integer.MAX_VALUE;
         for (Member member : members) {
             int currentSkillTotal = 0;

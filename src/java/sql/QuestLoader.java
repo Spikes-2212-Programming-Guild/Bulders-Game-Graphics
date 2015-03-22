@@ -39,10 +39,10 @@ public class QuestLoader {
         return null;
     }
 
-    public void readQuests() throws SQLException {
+    public void readQuests(int teamNumber) throws SQLException {
         quests = new HashSet<>();
         CharacterLoader cl = new CharacterLoader();
-        cl.readCharacters();
+        cl.readCharacters(teamNumber);
         DatabaseMetaData md = gurnyStaff.getConn().getMetaData();
         ResultSet rs = md.getTables(null, null, "%", null);
         while (rs.next()) {
