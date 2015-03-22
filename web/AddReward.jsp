@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
 <%@page import="members.Skill"%>
 <%@page import="sql.QuestSaver"%>
 <%@page import="quests.Quest"%>
@@ -27,7 +28,7 @@
             <select name="questName" style="font-size: larger">
                 <%
                     QuestLoader questLoader = new QuestLoader();
-                    questLoader.readQuests();
+                    questLoader.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
                     for (Quest q : questLoader.getQuests()) {
                 %>
                 <option value="<%=q.getName()%>"><%=q.getName()%></option>

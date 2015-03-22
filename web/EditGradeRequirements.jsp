@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
 <%@page import="sql.QuestSaver"%>
 <%@page import="members.Grade"%>
 <%@page import="quests.Quest"%>
@@ -18,7 +19,7 @@
     <body>
         <%
             QuestLoader ql = new QuestLoader();
-            ql.readQuests();
+            ql.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
             Quest quest = ql.getQuest(request.getParameter("questName"));
             int gradeCount = 0;
             if (request.getParameter("gradeCount") == null) {

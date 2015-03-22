@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
 <%@page import="sql.CharacterSaver"%>
 <%@page import="sql.CharacterLoader"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,7 +17,7 @@
     <body>
         <%
             CharacterLoader cl = new CharacterLoader();
-            cl.readCharacters();
+            cl.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
             CharacterSaver cs = new CharacterSaver(cl.getMember(request.getParameter("characterName")));
             cs.deleteCharacter();
         %>

@@ -14,4 +14,9 @@ public class constants {
     public static final String USER = "root";
     public static final String PASS = "ttt123";
     public static final String[] INVALID_NAMES= new String[]{"Quest","Character","Skill","Reward","Grades","Party","FIFTH","SEVENTH","EIGHTH"};
+
+    /**
+     * the attribute name for the team number
+     */
+    public static final String TEAM_NUMBER = "team_number";
 }

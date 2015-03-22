@@ -62,7 +62,7 @@
                 grade5 = Integer.valueOf(request.getParameter("grade5"));
                 grade7 = Integer.valueOf(request.getParameter("grade7"));
                 grade8 = Integer.valueOf(request.getParameter("grade8"));
-                Quest q = new Quest(name);
+                Quest q = new Quest(name,(int) session.getAttribute(constants.TEAM_NUMBER));
                 q.setGradeRequirement(Grade.FIFTH, grade5);
                 q.setGradeRequirement(Grade.SEVENTH, grade7);
                 q.setGradeRequirement(Grade.EIGHTH, grade8);

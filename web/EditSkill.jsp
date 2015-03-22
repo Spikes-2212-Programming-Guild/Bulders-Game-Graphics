@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
 <%@page import="sql.CharacterSaver"%>
 <%@page import="sql.CharacterLoader"%>
 <%@page import="members.Member"%>
@@ -29,17 +30,17 @@
                 if (skillName.equals("")) {
                     GurnyStaff gurnyStaff = new GurnyStaff();
                     CharacterLoader characterLoader = new CharacterLoader();
-                    characterLoader.readCharacters();
+                    characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
                     gurnyStaff.insertUpdateDelete("delete from " + sql.CharacterSaver.getCharacterSkills(characterLoader.getMember(character)) + " where name=\"" + oldSkill + "\";");
-                    characterLoader.readCharacters();
+                    characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
                 } else {
                     skillLevel = Integer.valueOf(request.getParameter("skillLevel"));
                     skillEXP = Integer.valueOf(request.getParameter("skillEXP"));
                     GurnyStaff gurnyStaff = new GurnyStaff();
                     CharacterLoader characterLoader = new CharacterLoader();
-                    characterLoader.readCharacters();
+                    characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
                     gurnyStaff.insertUpdateDelete("delete from " + sql.CharacterSaver.getCharacterSkills(characterLoader.getMember(character)) + " where name=\"" + oldSkill + "\";");
-                    characterLoader.readCharacters();
+                    characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
                     characterLoader.getMember(character).addSkill(skillName, skillLevel, skillEXP);
                     CharacterSaver cs = new CharacterSaver(characterLoader.getMember(character));
                     cs.saveCharacter();

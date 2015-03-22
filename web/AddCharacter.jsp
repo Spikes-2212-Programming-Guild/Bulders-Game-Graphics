@@ -42,13 +42,13 @@
                 Member m;
                 switch (grade) {
                     case 5:
-                        m = new Member(Grade.FIFTH, name);
+                        m = new Member(Grade.FIFTH, name, (int) session.getAttribute(constants.TEAM_NUMBER));
                         break;
                     case 7:
-                        m = new Member(Grade.SEVENTH, name);
+                        m = new Member(Grade.SEVENTH, name, (int) session.getAttribute(constants.TEAM_NUMBER));
                         break;
                     case 8:
-                        m = new Member(Grade.EIGHTH, name);
+                        m = new Member(Grade.EIGHTH, name, (int) session.getAttribute(constants.TEAM_NUMBER));
                         break;
                     default:
                         m = null;

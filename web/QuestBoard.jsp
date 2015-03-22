@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
 <%@page import="sql.QuestSaver"%>
 <%@page import="quests.PartyBuilder"%>
 <%@page import="java.util.Set"%>
@@ -23,9 +24,9 @@
         <h1 style="text-align: center;">Quest Board</h1>
         <%
             QuestLoader questLoader = new QuestLoader();
-            questLoader.readQuests();
+            questLoader.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
             CharacterLoader characterLoader = new CharacterLoader();
-            characterLoader.readCharacters();
+            characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
             if (request.getParameter("quest") != null) {
                 Set<Member> availableCharacters = new HashSet<>();
                 for (Member m : characterLoader.getCharacters()) {
