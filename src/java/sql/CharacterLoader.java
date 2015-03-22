@@ -42,8 +42,8 @@ public class CharacterLoader {
             Member character = null;
             String currentTable = rs.getString(3);
             if (currentTable.contains("Character") && currentTable.contains(String.valueOf(teamNumber))) {
-                String name = currentTable.replaceAll("Character", "").replaceAll("Skills", "").replaceAll("FIFTH", "").replaceAll("SEVENTH", "").replaceAll("EIGHTH", "");
-                Grade grade = Grade.valueOf(currentTable.replaceAll(name, "").replaceAll("Character", "").replaceAll("Skills", ""));
+                String name = currentTable.replaceAll("Character", "").replaceAll("Skills", "").replaceAll("FIFTH", "").replaceAll("SEVENTH", "").replaceAll("EIGHTH", "").replaceAll(String.valueOf(teamNumber), "");
+                Grade grade = Grade.valueOf(currentTable.replaceAll(name, "").replaceAll("Character", "").replaceAll("Skills", "").replaceAll(String.valueOf(teamNumber), ""));
                 character = new Member(grade, name, teamNumber);//get rid of all the suffixes
                 String[][] skills = gurnyStaff.select("select * from " + CharacterSaver.getCharacterSkills(character));
                 for (String[] strings : skills) {
