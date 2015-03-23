@@ -21,7 +21,7 @@
         <title>!</title>
     </head>
     <body style="background-image: url('wood.jpg');color: whitesmoke;font-size: larger">
-        <h1 style="text-align: center;">Quest Board</h1>
+        <h1 style="text-align: center;">Quest Board for <%= session.getAttribute(constants.TEAM_NUMBER)%></h1>
         <%
             QuestLoader questLoader = new QuestLoader();
             questLoader.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
