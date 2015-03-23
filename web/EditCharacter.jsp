@@ -16,6 +16,7 @@
         <title>Character Editor</title>
     </head>
     <body>
+        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <%! String character;%>
         <%! Member member;%>
         <%
@@ -26,7 +27,6 @@
                 member = characterLoader.getMember(character);
         %>
         <h1 style="text-align: center">Currently Playing with the Life of: <%=character%></h1> 
-        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <br/>
         <h2>Grade: <%=member.getGrade()%></h2> 
         <h2>Skills: </h2> 

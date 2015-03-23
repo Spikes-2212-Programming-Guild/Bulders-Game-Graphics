@@ -20,6 +20,7 @@
         <title>Edith Thy Quest!</title>
     </head>
     <body>
+        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <%! String questName;%>
         <%! Quest quest;%>
         <%
@@ -27,8 +28,7 @@
             if (questName == null) {
         %>
         <h1 style="text-align: center">Select a quest:</h1> 
-        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/><br/>
-        <form method="post" action="EditQuest.jsp">
+                <form method="post" action="EditQuest.jsp">
             <select name="questName" style="font-size: larger">
                 <%
                     QuestLoader ql = new QuestLoader();
@@ -49,8 +49,7 @@
             CharacterLoader cl = new CharacterLoader();
             cl.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
         %>
-        <h1 style="text-align: center">Editing an Annoyance Named: <%=questName%></h1>
-        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
+        <h1 style="text-align: center">Editing an Annoyance Named: <%=questName%></h1>      
         <table style="width: 100%">
             <tr>
                 <td>
