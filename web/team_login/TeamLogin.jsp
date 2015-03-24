@@ -24,7 +24,7 @@
                 <div style="position: relative; right: 16px">
                     Team Number <input type="text" name="team_number" value="" size="15"/> <br/>
                 </div>
-                Password <input type="text" name="password" value="" size="15"/> <br/>
+                Password <input type="password" name="password" value="" size="15"/> <br/>
             </div>
             <input type="submit" value="Login" />
         </form>
