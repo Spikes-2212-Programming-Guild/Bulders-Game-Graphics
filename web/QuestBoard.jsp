@@ -19,6 +19,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>!</title>
+        <%
+            System.out.println("was in QuestBoard");
+            if(session.getAttribute(constants.TEAM_NUMBER) == null){
+                %>
+                <script>
+                    window.location = "team_login/TeamLogin.jsp"
+                </script>
+        <%
+            } else {
+            %>
     </head>
     <body style="background-image: url('wood.jpg');color: whitesmoke;font-size: larger">
         <h1 style="text-align: center;">Quest Board for <%= session.getAttribute(constants.TEAM_NUMBER)%></h1>
@@ -110,4 +120,5 @@
             </table>
         </form>
     </body>
+    <%}%>
 </html>
