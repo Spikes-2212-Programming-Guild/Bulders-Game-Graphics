@@ -18,6 +18,7 @@
         <h1>Welcome to this site!</h1>
         Please, login: <br/>
         <%
+            session.setAttribute(constants.TEAM_NUMBER, null);
             if (request.getParameter("team_number") == null || request.getParameter("password") == null) {
         %>
         <form action="TeamLogin.jsp" method="post">

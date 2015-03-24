@@ -31,6 +31,7 @@
             %>
     </head>
     <body style="background-image: url('wood.jpg');color: whitesmoke;font-size: larger">
+        <input type="button" value="Logout!" onclick="window.location = 'team_login/TeamLogin.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <h1 style="text-align: center;">Quest Board for <%= session.getAttribute(constants.TEAM_NUMBER)%></h1>
         <%
             QuestLoader questLoader = new QuestLoader();
