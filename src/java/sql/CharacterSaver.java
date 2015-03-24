@@ -22,7 +22,7 @@ public class CharacterSaver {
     }
 
     public static String getCharacterSkills(Member member) {
-        return member.getTeamNumber() + "Character" + member.getName() + "Skills" + member.getGrade();
+        return member.getTeamNumber() + "Character" + member.getName().replaceAll(" ", "_") + "Skills" + member.getGrade();
     }
 
     public void deleteCharacter() {
