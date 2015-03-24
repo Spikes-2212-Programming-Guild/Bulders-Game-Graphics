@@ -14,6 +14,7 @@
         <title>Team Login</title>
     </head>
     <body style="text-align: center">
+        <input type="button" value="Register!" onclick="window.location = 'Register.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <h1>Welcome to this site!</h1>
         Please, login: <br/>
         <%
