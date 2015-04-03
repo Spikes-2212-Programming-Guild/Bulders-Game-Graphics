@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.GurnyStaff"%>
 <%@page import="sql.constants"%>
 <%@page import="sql.QuestSaver"%>
 <%@page import="quests.PartyBuilder"%>
@@ -21,18 +22,20 @@
         <title>!</title>
         <%
             System.out.println("was in QuestBoard");
-            if(session.getAttribute(constants.TEAM_NUMBER) == null){
-                %>
-                <script>
-                    window.location = "team_login/TeamLogin.jsp"
-                </script>
+            if (session.getAttribute(constants.TEAM_NUMBER) == null) {
+        %>
+        <script>
+            window.location = "team_login/TeamLogin.jsp"
+        </script>
         <%
-            } else {
-            %>
+        } else {
+        %>
+        <%! GurnyStaff gurnyStaff;%>
+        <% gurnyStaff = new GurnyStaff();%>
     </head>
     <body style="background-image: url('wood.jpg');color: whitesmoke;font-size: larger">
         <input type="button" value="Logout!" onclick="window.location = 'team_login/TeamLogin.jsp'" style="position: absolute;right: 20px;top: 30px"/>
-        <h1 style="text-align: center;">Quest Board for <%= session.getAttribute(constants.TEAM_NUMBER)%></h1>
+        <h1 style="text-align: center;">Quest Board for #<%= session.getAttribute(constants.TEAM_NUMBER)%>, <%= gurnyStaff.select("select * from Teams where team_number = \"" + session.getAttribute(constants.TEAM_NUMBER) + "\";")[0][2]%></h1>
         <%
             QuestLoader questLoader = new QuestLoader();
             questLoader.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));

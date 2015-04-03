@@ -33,7 +33,7 @@
                 if (gurnyStaff.select("select * from Teams where team_number=" + request.getParameter("team_number") + ";").length > 0) {
                     out.println("That team is already registered, you cheeky little hacker!");
                 } else {
-                    gurnyStaff.insertUpdateDelete("INSERT INTO Teams (team_number, password, team_name) VALUES (" + request.getParameter("team_number") + ", '" + request.getParameter("password") + "', '" + request.getParameter("team_name") + "');");
+                    gurnyStaff.insertUpdateDelete("INSERT INTO Teams (team_number, password, team_name) VALUES (" + request.getParameter("team_number") + ", '" + request.getParameter("password") + "', '" + request.getParameter("team_name").replaceAll("<", "&lt;") + "');");
                     session.setAttribute(constants.TEAM_NUMBER, Integer.valueOf(request.getParameter("team_number")));
         %>
         <script>
