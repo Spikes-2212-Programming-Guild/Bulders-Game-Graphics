@@ -31,11 +31,15 @@
         } else {
         %>
         <%! GurnyStaff gurnyStaff;%>
-        <% gurnyStaff = new GurnyStaff();%>
+        <%
+            gurnyStaff = new GurnyStaff();
+            gurnyStaff.prepareSelectStatement("select * from Teams where team_number = ?;");
+            gurnyStaff.prepareStatement().setInt(1, (int) session.getAttribute(constants.TEAM_NUMBER));
+        %>
     </head>
     <body style="background-image: url('wood.jpg');color: whitesmoke;font-size: larger">
         <input type="button" value="Logout!" onclick="window.location = 'team_login/TeamLogin.jsp'" style="position: absolute;right: 20px;top: 30px"/>
-        <h1 style="text-align: center;">Quest Board for #<%= session.getAttribute(constants.TEAM_NUMBER)%>, <%= gurnyStaff.select("select * from Teams where team_number = \"" + session.getAttribute(constants.TEAM_NUMBER) + "\";")[0][2]%></h1>
+        <h1 style="text-align: center;">Quest Board for <%= gurnyStaff.executeSelect()[0][2]%></h1>
         <%
             QuestLoader questLoader = new QuestLoader();
             questLoader.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
