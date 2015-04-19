@@ -31,7 +31,9 @@
         <%
             if (request.getParameter("team_number") != null && request.getParameter("password") != null && request.getParameter("team_name") != null) {
                 GurnyStaff gurnyStaff = new GurnyStaff();
-                if (gurnyStaff.select("select * from Teams where team_number=" + request.getParameter("team_number") + ";").length > 0) {
+                gurnyStaff.prepareSelectStatement("select * from Teams where team_number= ? ;");
+                gurnyStaff.prepareStatement().setInt(1, Integer.valueOf(request.getParameter(constants.TEAM_NUMBER)));
+                if (gurnyStaff.executeSelect().length > 0) {
                     out.println("That team is already registered, you cheeky little hacker!");
                 } else {//65 -122
                     Random r = new Random();
@@ -41,7 +43,13 @@
                         salt += (alphabet.charAt(r.nextInt(alphabet.length())));
                     }
                     int hash = (request.getParameter("password") + salt).hashCode();
-                    gurnyStaff.insertUpdateDelete("INSERT INTO Teams (team_number, password, team_name, salt) VALUES (" + request.getParameter("team_number") + ", '" + hash + "', '" + request.getParameter("team_name").replaceAll("<", "&lt;") + "', '" + salt + "');");
+//                    gurnyStaff.insertUpdateDelete("INSERT INTO Teams (team_number, password, team_name, salt) VALUES (" + request.getParameter("team_number") + ", '" + hash + "', '" + request.getParameter("team_name").replaceAll("<", "&lt;") + "', '" + salt + "');");
+                    gurnyStaff.prepareStatement("INSERT INTO Teams (team_number, password, team_name, salt) VALUES (?, ?, ?, ?);");
+                    gurnyStaff.prepareStatement().setInt(1, Integer.valueOf(request.getParameter("team_number")));
+                    gurnyStaff.prepareStatement().setString(2, String.valueOf(hash));
+                    gurnyStaff.prepareStatement().setString(3, request.getParameter("team_name").replaceAll("<", "&lt;"));
+                    gurnyStaff.prepareStatement().setString(4, salt);
+                    gurnyStaff.executeUpdate();
                     session.setAttribute(constants.TEAM_NUMBER, Integer.valueOf(request.getParameter("team_number")));
         %>
         <script>
