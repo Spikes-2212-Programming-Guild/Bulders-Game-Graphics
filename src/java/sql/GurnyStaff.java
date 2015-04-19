@@ -1,10 +1,13 @@
 package sql;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GurnyStaff {
 
     private Connection conn;
+    private PreparedStatement statement;
 
     public Connection getConn() {
         return conn;
@@ -32,6 +35,85 @@ public class GurnyStaff {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public PreparedStatement prepareStatement() {
+        return statement;
+    }
+
+    public PreparedStatement prepareStatement(String sql) {
+        if (statement == null) {
+            try {
+                statement = conn.prepareStatement(sql);
+            } catch (SQLException ex) {
+                Logger.getLogger(GurnyStaff.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return statement;
+    }
+
+    public PreparedStatement prepareSelectStatement(String sql) {
+        if (statement == null) {
+            try {
+                statement = conn.prepareStatement(sql,
+                        ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_UPDATABLE
+                );
+            } catch (SQLException ex) {
+                Logger.getLogger(GurnyStaff.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return statement;
+    }
+
+    public int executeUpdate() {
+        System.out.println("Running command: " + statement.toString());
+        int num = 0;
+        try {
+            // Invoke sql command
+            num = statement.executeUpdate();
+            statement.close();
+            statement = null;
+            System.out.println("Command executed!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return num;
+    }
+
+    public String[][] executeSelect() {
+        System.out.println("Running Select Command: " + statement.toString());
+        String result[][] = null;
+        try {
+            // Invoke sql command and puts the result into ResultSet object - res
+            ResultSet res = statement.executeQuery();
+            // m- the column number
+            int m = res.getMetaData().getColumnCount();
+            // move the cursor to the last row
+            res.last();
+            // n- the number of the last row
+            int n = res.getRow();
+            // create the array
+            result = new String[n][m];
+            // move the cursor before the first line
+            res.beforeFirst();
+            // copy the data from resultset to the array
+            int i = 0;
+            while (res.next()) {
+
+                for (int j = 0; j < m; j++) {
+                    result[i][j] = res.getString(j + 1);
+                }
+                i++;
+            }
+            res.close();
+            statement.close();
+            statement = null;
+            System.out.println("Command executed!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
