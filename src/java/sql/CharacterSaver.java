@@ -5,6 +5,9 @@
  */
 package sql;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import members.Member;
 import members.Skill;
 
@@ -41,7 +44,16 @@ public class CharacterSaver {
 //        create table
         gurnyStaff.insertUpdateDelete("create table " + getCharacterSkills(character) + "(name varchar(50), level int, exp int);");
         for (Skill skill : character.getSkills()) {
-            gurnyStaff.insertUpdateDelete("insert into " + getCharacterSkills(character) + " values(\"" + skill.getName() + "\"," + skill.getLevel() + "," + skill.getExp() + ");");
+            try {
+                //            gurnyStaff.insertUpdateDelete("insert into " + getCharacterSkills(character) + " values(\"" + skill.getName() + "\"," + skill.getLevel() + "," + skill.getExp() + ");");
+                gurnyStaff.prepareStatement("insert into " + getCharacterSkills(character) + " values(?,?,?);");
+                gurnyStaff.prepareStatement().setString(1, skill.getName());
+                gurnyStaff.prepareStatement().setInt(2, skill.getLevel());
+                gurnyStaff.prepareStatement().setInt(3, skill.getExp());
+                gurnyStaff.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(CharacterSaver.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
