@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="java.util.Random"%>
 <%@page import="sql.constants"%>
 <%@page import="sql.GurnyStaff"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -32,8 +33,15 @@
                 GurnyStaff gurnyStaff = new GurnyStaff();
                 if (gurnyStaff.select("select * from Teams where team_number=" + request.getParameter("team_number") + ";").length > 0) {
                     out.println("That team is already registered, you cheeky little hacker!");
-                } else {
-                    gurnyStaff.insertUpdateDelete("INSERT INTO Teams (team_number, password, team_name) VALUES (" + request.getParameter("team_number") + ", '" + request.getParameter("password") + "', '" + request.getParameter("team_name").replaceAll("<", "&lt;") + "');");
+                } else {//65 -122
+                    Random r = new Random();
+                    String salt = "";
+                    String alphabet = "qwertyuiopasdfghjklzxcvbnm";
+                    for (int i = 0; i < 16; i++) {
+                        salt += (alphabet.charAt(r.nextInt(alphabet.length())));
+                    }
+                    int hash = (request.getParameter("password") + salt).hashCode();
+                    gurnyStaff.insertUpdateDelete("INSERT INTO Teams (team_number, password, team_name, salt) VALUES (" + request.getParameter("team_number") + ", '" + hash + "', '" + request.getParameter("team_name").replaceAll("<", "&lt;") + "', '" + salt + "');");
                     session.setAttribute(constants.TEAM_NUMBER, Integer.valueOf(request.getParameter("team_number")));
         %>
         <script>

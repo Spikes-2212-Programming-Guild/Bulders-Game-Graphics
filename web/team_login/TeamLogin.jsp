@@ -31,15 +31,16 @@
             <input type="submit" value="Login" />
         </form>
         <%
-            } else {
-                GurnyStaff gurnyStaff = new GurnyStaff();
-                if (gurnyStaff.select("select * from Teams where team_number=" + request.getParameter("team_number") + " and password = \"" + request.getParameter("password") + "\";").length > 0) {
-                    session.setAttribute(constants.TEAM_NUMBER, Integer.valueOf(request.getParameter("team_number")));
-                %>
-                <script>
-                    window.location =  '../QuestBoard.jsp'
-                </script>
-                <%
+        } else {
+            GurnyStaff gurnyStaff = new GurnyStaff();
+            int hash = (request.getParameter("password") + gurnyStaff.select("SELECT salt from Teams where team_number=" + request.getParameter("team_number") + ";")[0][0]).hashCode();
+            if (gurnyStaff.select("select * from Teams where team_number=" + request.getParameter("team_number") + " and password = \"" + hash + "\";").length > 0) {
+                session.setAttribute(constants.TEAM_NUMBER, Integer.valueOf(request.getParameter("team_number")));
+        %>
+        <script>
+            window.location = '../QuestBoard.jsp'
+        </script>
+        <%
                 }
             }
         %>
