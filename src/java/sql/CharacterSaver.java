@@ -21,6 +21,11 @@ public class CharacterSaver {
         this.character = Character;
     }
 
+    /**
+     *
+     * @param member
+     * @return string used as name for member's skill table
+     */
     public static String getCharacterSkills(Member member) {
         return member.getTeamNumber() + "Character" + member.getName().replaceAll(" ", "_") + "Skills" + member.getGrade();
     }
