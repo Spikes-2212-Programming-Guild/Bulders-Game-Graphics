@@ -5,7 +5,10 @@
  */
 package sql;
 
+import java.sql.SQLException;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import members.Grade;
 import members.Member;
 import members.Skill;
@@ -65,16 +68,47 @@ public class QuestSaver {
         gurnyStaff.insertUpdateDelete("create table " + getQuestParty(quest) + "(members varchar(20));");
 
         for (Map.Entry<Grade, Integer> grade : quest.getGradeRequirments().entrySet()) {
-            gurnyStaff.insertUpdateDelete("insert into " + getQuestGrades(quest) + " values(\"" + grade.getKey() + "\"," + grade.getValue() + ");");
+            try {
+//                gurnyStaff.insertUpdateDelete("insert into " + getQuestGrades(quest) + " values(\"" + grade.getKey() + "\"," + grade.getValue() + ");");
+                gurnyStaff.prepareStatement("insert into " + getQuestGrades(quest) + " values(?,?);");
+                gurnyStaff.prepareStatement().setString(1, grade.getKey().toString());
+                gurnyStaff.prepareStatement().setInt(2, grade.getValue());
+                gurnyStaff.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(QuestSaver.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         for (Map.Entry<Skill, Integer> skill : quest.getSkillRequirments().entrySet()) {
-            gurnyStaff.insertUpdateDelete("insert into " + getQuestSkills(quest) + " values(\"" + skill.getKey().getName() + "\"," + skill.getValue() + ");");
+            try {
+//                gurnyStaff.insertUpdateDelete("insert into " + getQuestSkills(quest) + " values(\"" + skill.getKey().getName() + "\"," + skill.getValue() + ");");
+                gurnyStaff.prepareStatement("insert into " + getQuestSkills(quest) + " values(?,?);");
+                gurnyStaff.prepareStatement().setString(1, skill.getKey().getName());
+                gurnyStaff.prepareStatement().setInt(2, skill.getValue());
+                gurnyStaff.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(QuestSaver.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         for (Map.Entry<Skill, Integer> reward : quest.getRewards().entrySet()) {
-            gurnyStaff.insertUpdateDelete("insert into " + getQuestRewards(quest) + " values(\"" + reward.getKey().getName() + "\"," + reward.getValue() + ");");
+            try {
+//                gurnyStaff.insertUpdateDelete("insert into " + getQuestRewards(quest) + " values(\"" + reward.getKey().getName() + "\"," + reward.getValue() + ");");
+                gurnyStaff.prepareStatement("insert into " + getQuestRewards(quest) + " values(?,?);");
+                gurnyStaff.prepareStatement().setString(1, reward.getKey().getName());
+                gurnyStaff.prepareStatement().setInt(2, reward.getValue());
+                gurnyStaff.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(QuestSaver.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         for (Member m : quest.getParty()) {
-            gurnyStaff.insertUpdateDelete("insert into " + getQuestParty(quest) + " values(\"" + m.getName() + "\");");
+            try {
+//            gurnyStaff.insertUpdateDelete("insert into " + getQuestParty(quest) + " values(\"" + m.getName() + "\");");
+                gurnyStaff.prepareStatement("insert into " + getQuestParty(quest) + " values(?);");
+                gurnyStaff.prepareStatement().setString(1, m.getName());
+                gurnyStaff.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(QuestSaver.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
