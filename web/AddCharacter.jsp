@@ -14,6 +14,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add a Character</title>
+        <script src="Javascript/validateInput.js"></script>
+        <script>
+            function check() {
+                if (validate(document.getElementById('name').value) === 1) {
+                    document.getElementById('form').submit();
+                }
+            }
+        </script>
     </head>
     <body>
         <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
@@ -62,7 +70,7 @@
             Redirecting to skill management... <br/>
         </div>
         <script>
-                window.location = "AddSkillToCharacter.jsp?character=<%=name%>";
+            window.location = "AddSkillToCharacter.jsp?character=<%=name%>";
         </script>
         <%            }
         } else {
@@ -70,14 +78,14 @@
         <h1 style="text-align: center">
             Create a Character!
         </h1> <br/>
-        <form action="AddCharacter.jsp" method="post">
+        <form action="AddCharacter.jsp" method="post" id='form'>
             Name: <input type="text" name="name" id="name" value="Enter a name" onfocus="document.getElementById('name').value = ''"/> <br/>
             Grade: <select name="grade">
                 <option value="5">Fifth</option>
                 <option value="7">Seventh</option>
                 <option value="8">Eighth</option>
             </select> <br/>
-            <input type="submit" value="Create!" name="submit" />
+            <input type="button" value="Create!" name="submit" onclick="check()"/>
         </form>
         <%}%>
     </body>
