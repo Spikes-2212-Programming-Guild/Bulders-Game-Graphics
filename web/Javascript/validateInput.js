@@ -10,7 +10,7 @@ function validateWord(word, sigma) {
     for (var i = 0; i < word.length; i++) {
         if (sigma.indexOf(word[i]) === -1) {
             flag = false;
-            alert("Invalid input! Character '" + word[i] +"' is invalid!")
+            alert("Invalid input! Character '" + word[i] + "' is invalid!")
             break;
         }
     }
@@ -24,4 +24,8 @@ var SpecialChars = ' ';//spaces are a char too!
 
 function validate(word) {
     return validateWord(word, (numbers + LowerCaseLetters + SpecialChars + UpperCaseLetters));
+}
+
+function validateNumbers(word) {
+    return validateWord(word, numbers);
 }
