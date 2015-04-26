@@ -6,10 +6,12 @@
 
 
 function validateWord(word, sigma) {
-    var flag = 1;
+    var flag = true;
     for (var i = 0; i < word.length; i++) {
-        if (!(sigma.indexOf(word[i]) > -1)) {
-            flag = 0;
+        if (sigma.indexOf(word[i]) === -1) {
+            flag = false;
+            alert("Invalid input! Character '" + word[i] +"' is invalid!")
+            break;
         }
     }
     return flag;
