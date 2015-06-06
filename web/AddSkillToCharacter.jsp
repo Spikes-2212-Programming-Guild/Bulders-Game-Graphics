@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
 <%@page import="sql.CharacterSaver"%>
 <%@page import="members.Member"%>
 <%@page import="sql.CharacterLoader"%>
@@ -15,17 +16,17 @@
         <title>Skill Adder 9000</title>
     </head>
     <body style="text-align: center">
+        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <%! String character;%>
         <%
             if (request.getParameter("character") == null) {
         %>
         <h1>Select a character:</h1>
-        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/><br/>
         <form method="post" action="AddSkillToCharacter.jsp">
             <select name="character" style="font-size: larger">
                 <%
                     CharacterLoader characterLoader = new CharacterLoader();
-                    characterLoader.readCharacters();
+                    characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
                     for (Member m : characterLoader.getCharacters()) {
                 %>
                 <option value="<%=m.getName()%>"><%=m.getName()%></option>
@@ -53,7 +54,7 @@
         } else {
             character = request.getParameter("character");
             CharacterLoader characterLoader = new CharacterLoader();
-            characterLoader.readCharacters();
+            characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
             for (Member m : characterLoader.getCharacters()) {
                 if (m.getName().equalsIgnoreCase(character)) {
                     m.addSkill(request.getParameter("skillName"), Integer.valueOf(request.getParameter("skillLevel")), Integer.valueOf(request.getParameter("skillEXP")));

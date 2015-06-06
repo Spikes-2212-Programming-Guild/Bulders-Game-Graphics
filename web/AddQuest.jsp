@@ -16,6 +16,7 @@
         <title>Art thou prepared?</title>
     </head>
     <body>
+        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <%!
             String name;
             int grade5;
@@ -31,8 +32,7 @@
         <h1 style="text-align: center">
             Make a <del>Needles Grinding Task</del> Quest!
         </h1>
-        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/><br/>
-        <form action="AddQuest.jsp" method="post">
+                <form action="AddQuest.jsp" method="post">
             Name: <input type="text" name="name" id="name" value="Enter a name" onfocus="document.getElementById('name').value = ''"/> <br/>
             <input type="submit" value="Move to Requirments!" name="submit" />
         </form>
@@ -62,7 +62,7 @@
                 grade5 = Integer.valueOf(request.getParameter("grade5"));
                 grade7 = Integer.valueOf(request.getParameter("grade7"));
                 grade8 = Integer.valueOf(request.getParameter("grade8"));
-                Quest q = new Quest(name);
+                Quest q = new Quest(name,(int) session.getAttribute(constants.TEAM_NUMBER));
                 q.setGradeRequirement(Grade.FIFTH, grade5);
                 q.setGradeRequirement(Grade.SEVENTH, grade7);
                 q.setGradeRequirement(Grade.EIGHTH, grade8);

@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
 <%@page import="members.Skill"%>
 <%@page import="members.Member"%>
 <%@page import="sql.CharacterLoader"%>
@@ -15,17 +16,17 @@
         <title>Character Editor</title>
     </head>
     <body>
+        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <%! String character;%>
         <%! Member member;%>
         <%
             character = request.getParameter("character");
             if (character != null) {
                 CharacterLoader characterLoader = new CharacterLoader();
-                characterLoader.readCharacters();
+                characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
                 member = characterLoader.getMember(character);
         %>
         <h1 style="text-align: center">Currently Playing with the Life of: <%=character%></h1> 
-        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <br/>
         <h2>Grade: <%=member.getGrade()%></h2> 
         <h2>Skills: </h2> 
@@ -64,7 +65,7 @@
         <select name="character" style="font-size: larger">
             <%
                 CharacterLoader characterLoader = new CharacterLoader();
-                characterLoader.readCharacters();
+                characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
                 for (Member m : characterLoader.getCharacters()) {
             %>
             <option value="<%=m.getName()%>"><%=m.getName()%></option>

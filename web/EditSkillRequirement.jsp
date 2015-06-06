@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
 <%@page import="members.Skill"%>
 <%@page import="sql.QuestSaver"%>
 <%@page import="quests.Quest"%>
@@ -20,8 +21,8 @@
         <%
             QuestLoader ql = new QuestLoader();
             CharacterLoader cl = new CharacterLoader();
-            ql.readQuests();
-            cl.readCharacters();
+            ql.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
+            cl.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
             Quest quest = ql.getQuest(request.getParameter("questName"));
             quest.removeSkill(request.getParameter("oldSkill"));
             if (!request.getParameter("skillName").equals("")) {

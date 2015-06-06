@@ -20,6 +20,7 @@ import members.Skill;
  */
 public class Quest {
 
+    private final int teamNumber;
     private final String name;
     private Set<Member> party = new HashSet<>();
     private Map<Skill, Integer> skillRequirments = new HashMap<>();
@@ -27,8 +28,9 @@ public class Quest {
     private Map<Skill, Integer> rewards = new HashMap<>();
     private boolean isDone;
 
-    public Quest(String name) {
+    public Quest(String name, int teamNumber) {
         this.name = name;
+        this.teamNumber = teamNumber;
     }
 
     public String getName() {
@@ -43,12 +45,16 @@ public class Quest {
         return party;
     }
 
+    public int getTeamNumber() {
+        return teamNumber;
+    }
+
     public void addSkillRequirment(Skill skill, int level) {
         skillRequirments.put(skill, level);
     }
 
     public void setGradeRequirement(Grade grade, int count) {
-            gradeRequirments.put(grade, count);
+        gradeRequirments.put(grade, count);
     }
 
     public void addReward(Skill skill, int exp) {
@@ -71,17 +77,18 @@ public class Quest {
 
     public void removeSkill(String name) {
         Skill log = new Skill(null);
-        for (Map.Entry<Skill, Integer> entry: skillRequirments.entrySet()) {
-            if(entry.getKey().getName().equalsIgnoreCase(name)){
+        for (Map.Entry<Skill, Integer> entry : skillRequirments.entrySet()) {
+            if (entry.getKey().getName().equalsIgnoreCase(name)) {
                 log = entry.getKey();
             }
         }
         skillRequirments.remove(log);
     }
-    public void removeReward(String name){
+
+    public void removeReward(String name) {
         Skill log = new Skill(null);
-        for (Map.Entry<Skill, Integer> entry: rewards.entrySet()) {
-            if(entry.getKey().getName().equalsIgnoreCase(name)){
+        for (Map.Entry<Skill, Integer> entry : rewards.entrySet()) {
+            if (entry.getKey().getName().equalsIgnoreCase(name)) {
                 log = entry.getKey();
             }
         }

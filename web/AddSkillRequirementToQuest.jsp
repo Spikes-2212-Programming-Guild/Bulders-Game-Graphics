@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
 <%@page import="sql.QuestSaver"%>
 <%@page import="members.Skill"%>
 <%@page import="quests.Quest"%>
@@ -16,6 +17,7 @@
         <title>Lelouch</title>
     </head>
     <body>
+        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <%!
             String quest;
             String skill;
@@ -27,12 +29,11 @@
             if (quest == null) {
         %>
         <h1>Choose Your Quest...</h1>
-        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/><br/>
-        <form method="post" action="AddSkillRequirementToQuest.jsp">
+                <form method="post" action="AddSkillRequirementToQuest.jsp">
             <select name="quest" style="font-size: larger">
                 <%
                     QuestLoader questLoader = new QuestLoader();
-                    questLoader.readQuests();
+                    questLoader.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
                     for (Quest q : questLoader.getQuests()) {
                 %>
                 <option value="<%=q.getName()%>"><%=q.getName()%></option>
@@ -55,7 +56,7 @@
         <%
         } else {
             QuestLoader questLoader = new QuestLoader();
-            questLoader.readQuests();
+            questLoader.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
             for (Quest q : questLoader.getQuests()) {
                 if (q.getName().equalsIgnoreCase(quest)) {
                     q.addSkillRequirment(new Skill(skill), Integer.valueOf(request.getParameter("level")));
@@ -63,8 +64,7 @@
                     qs.saveQuest();
         %>
         <h1>Added skill!</h1> 
-        <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/><br/>
-        <form method = "post" action="AddSkillRequirementToQuest.jsp">
+                <form method = "post" action="AddSkillRequirementToQuest.jsp">
             <input type="hidden" name="quest" value="<%= quest%>" />
             <input type="submit" value="Add Another Requirement!" />
             <input type="button" value="Choose another quest!" onclick="window.location = 'AddSkillRequirementToQuest.jsp'"/>

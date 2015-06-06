@@ -4,6 +4,7 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.constants"%>
 <%@page import="sql.QuestSaver"%>
 <%@page import="sql.CharacterSaver"%>
 <%@page import="members.Skill"%>
@@ -21,7 +22,7 @@
     <body>
         <%
             QuestLoader ql = new QuestLoader();
-            ql.readQuests();
+            ql.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
             CharacterSaver cs;
             Quest quest = ql.getQuest(request.getParameter("questName"));
             for (Member m : quest.getParty()) {

@@ -4,6 +4,8 @@
     Author     : thinkredstone
 --%>
 
+<%@page import="sql.GurnyStaff"%>
+<%@page import="sql.constants"%>
 <%@page import="sql.QuestSaver"%>
 <%@page import="quests.PartyBuilder"%>
 <%@page import="java.util.Set"%>
@@ -18,14 +20,31 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>!</title>
+        <%
+            System.out.println("was in QuestBoard");
+            if (session.getAttribute(constants.TEAM_NUMBER) == null) {
+        %>
+        <script>
+            window.location = "team_login/TeamLogin.jsp"
+        </script>
+        <%
+        } else {
+        %>
+        <%! GurnyStaff gurnyStaff;%>
+        <%
+            gurnyStaff = new GurnyStaff();
+            gurnyStaff.prepareSelectStatement("select * from Teams where team_number = ?;");
+            gurnyStaff.prepareStatement().setInt(1, (int) session.getAttribute(constants.TEAM_NUMBER));
+        %>
     </head>
     <body style="background-image: url('wood.jpg');color: whitesmoke;font-size: larger">
-        <h1 style="text-align: center;">Quest Board</h1>
+        <input type="button" value="Logout!" onclick="window.location = 'team_login/TeamLogin.jsp'" style="position: absolute;right: 20px;top: 30px"/>
+        <h1 style="text-align: center;">Quest Board for <%= gurnyStaff.executeSelect()[0][2]%></h1>
         <%
             QuestLoader questLoader = new QuestLoader();
-            questLoader.readQuests();
+            questLoader.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
             CharacterLoader characterLoader = new CharacterLoader();
-            characterLoader.readCharacters();
+            characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
             if (request.getParameter("quest") != null) {
                 Set<Member> availableCharacters = new HashSet<>();
                 for (Member m : characterLoader.getCharacters()) {
@@ -109,4 +128,5 @@
             </table>
         </form>
     </body>
+    <%}%>
 </html>
