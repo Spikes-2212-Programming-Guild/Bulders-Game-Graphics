@@ -22,7 +22,9 @@
             ql.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
             Quest quest = ql.getQuest(request.getParameter("questName"));
             int gradeCount = 0;
-            if (request.getParameter("gradeCount") == null) {
+            if (request.getParameter("gradeCount").equals("")) {
+                gradeCount = 0;
+            } else {
                 gradeCount = Integer.valueOf(request.getParameter("gradeCount"));
             }
             if (gradeCount < 0) {
