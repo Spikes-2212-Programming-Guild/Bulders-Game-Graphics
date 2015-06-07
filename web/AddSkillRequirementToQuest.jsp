@@ -47,10 +47,10 @@
         } else if (skill == null) {
         %>
         <h1 style="text-align: center">Choose <del>Arbitrary</del> FAIR Skill Requirements</h1>
-        <form method="post" action="AddSkillRequirementToQuest.jsp">
+        <form method="post" action="AddSkillRequirementToQuest.jsp" onsubmit="return validateNumbers(document.getElementById('number').value)">
             <input type="hidden" value="<%=quest%>" name="quest" />
             Enter skill name: <input type="text" name="skill" value="Enter Skill name..." id='name' onfocus="document.getElementById('name').value = ''"/> <br/>
-            Enter Required Level: <input type="number" name="level" value="1" /> <br/>
+            Enter Required Level: <input type="number" name="level" value="1" id="number"/> <br/>
             <input type="submit" value="To Battle!" />
         </form>
         <%

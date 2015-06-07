@@ -14,6 +14,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Art thou prepared?</title>
+        <script src="Javascript/validateInput.js"></script>
     </head>
     <body>
         <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
@@ -30,9 +31,9 @@
             if (name == null) {
         %>
         <h1 style="text-align: center">
-            Make a <del>Needles Grinding Task</del> Quest!
+            Make a <del>Needless Grinding Task</del> Quest!
         </h1>
-                <form action="AddQuest.jsp" method="post">
+        <form action="AddQuest.jsp" method="post" onsubmit="return validate(document.getElementById('name').value)">
             Name: <input type="text" name="name" id="name" value="Enter a name" onfocus="document.getElementById('name').value = ''"/> <br/>
             <input type="submit" value="Move to Requirments!" name="submit" />
         </form>
@@ -40,13 +41,13 @@
         } else if (request.getParameter("grade5") == null) {
         %>
         <h1 style="text-align: center">Choose <del>Size</del> GRADE Requirements!</h1> <br/>
-        <form method ="post" action="AddQuest.jsp" id="requirements">
+        <form method ="post" onsubmit="return (validateNumbers(document.getElementById('grade5').value) && validateNumbers(document.getElementById('grade7').value) && validateNumbers(document.getElementById('grade8').value))" action="AddQuest.jsp" id="requirements">
             <input type="hidden" name="name" value="<%=name%>"/>
             Grade Requirements: 
             <input type="submit" style="position: relative; left: 120px; top: 43px" value="Choose Your Just Rewards!"/> <br/>
-            FIFTH: <input type="number" name="grade5" value="0" style="position: relative; left: 28px" /> <br/>
-            SEVENTH: <input type="number" name="grade7" value="0" /> <br/>
-            EIGHTH: <input type="number" name="grade8" value="0" style="position: relative; left: 13px"/> <br/>
+            FIFTH: <input type="number" name="grade5" value="0" id="grade5" style="position: relative; left: 28px" /> <br/>
+            SEVENTH: <input type="number" name="grade7" value="0" id="grade7"/> <br/>
+            EIGHTH: <input type="number" name="grade8" value="0" id="grade8" style="position: relative; left: 13px"/> <br/>
         </form>
         <%
         } else {
@@ -62,7 +63,7 @@
                 grade5 = Integer.valueOf(request.getParameter("grade5"));
                 grade7 = Integer.valueOf(request.getParameter("grade7"));
                 grade8 = Integer.valueOf(request.getParameter("grade8"));
-                Quest q = new Quest(name,(int) session.getAttribute(constants.TEAM_NUMBER));
+                Quest q = new Quest(name, (int) session.getAttribute(constants.TEAM_NUMBER));
                 q.setGradeRequirement(Grade.FIFTH, grade5);
                 q.setGradeRequirement(Grade.SEVENTH, grade7);
                 q.setGradeRequirement(Grade.EIGHTH, grade8);

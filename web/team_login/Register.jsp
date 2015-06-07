@@ -13,16 +13,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
+        <script src="../Javascript/validateInput.js"></script>
     </head>
     <body style="text-align: center">
         <h1>Enter Team Name, Team number and Password:</h1>
-        <form action="Register.jsp" method="post">
+        <form action="Register.jsp" method="post" onsubmit="return validateNumbers(document.getElementById('number').value)">
             <div style="position: relative; right: 25px">
                 <div style="position: relative; right: 9px">
-                    Team Name <input type="text" name="team_name" value="" size="15"/> <br/>
+                    Team Name <input type="text" name="team_name" value="" size="15" id="name"/> <br/>
                 </div>
                 <div style="position: relative; right: 16px">
-                    Team Number <input type="text" name="team_number" value="" size="15"/> <br/>
+                    Team Number <input type="text" name="team_number" value="" size="15" id="number"/> <br/>
                 </div>
                 Password <input type="password" name="password" value="" size="15"/> <br/>
             </div>
