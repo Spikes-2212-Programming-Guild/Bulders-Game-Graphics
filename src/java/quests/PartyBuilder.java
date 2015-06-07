@@ -57,17 +57,19 @@ public class PartyBuilder {
 //                bestSuited = member;
 //            }
 //        }
-        quest.addMember(bestSuited);
-        members.remove(bestSuited);
+        if (bestSuited.getName() != null) {
+            quest.addMember(bestSuited);
+            members.remove(bestSuited);
+        }
     }
 
     public void addBestSuitedAbove(Set<Member> members) {
-        Member bestSuited = new Member(null, null,0);
+        Member bestSuited = new Member(null, null, 0);
         int bestSuitness = Integer.MAX_VALUE;
         for (Member member : members) {
             int currentSuitness = 0;
             for (Map.Entry<Skill, Integer> skill : quest.getSkillRequirments().entrySet()) {//we just want them to be close
-                if (member.getSkillLevel(skill.getKey().getName()) >= skill.getValue()) {//need to be above or the same as the requirments
+                if (member.getSkillLevel(skill.getKey()) >= skill.getValue()) {//need to be above or the same as the requirments
                     currentSuitness += member.getSkillLevel(skill.getKey()) - quest.getSkillRequirments().get(skill.getKey());//updates the current suitness according ot the diffrence between requirment and level
                 } else {
                     currentSuitness = Integer.MAX_VALUE;//lower then the requirments, not suited at all
@@ -79,26 +81,29 @@ public class PartyBuilder {
                 bestSuitness = currentSuitness;
             }
         }
-        quest.addMember(bestSuited);
-        members.remove(bestSuited);
+        if (bestSuited.getName() != null) {
+            quest.addMember(bestSuited);
+            members.remove(bestSuited);
+        }
     }
 
     public void addLeastSkilled(Set<Member> members) {
-        Member leastSkilled = new Member(null, null,0);
+        Member leastSkilled = new Member(null, null, 0);
         int skillTotal = Integer.MAX_VALUE;
         for (Member member : members) {
             int currentSkillTotal = 0;
             for (Map.Entry<Skill, Integer> skill : quest.getSkillRequirments().entrySet()) {//we just want them to be close
-                currentSkillTotal += member.getSkillLevel(skill.getKey());//updates the current skill total according ot the diffrence between requirment and level
+                currentSkillTotal += member.getSkillLevel(skill.getKey()) - skill.getValue();//updates the current skill total according ot the diffrence between level and requirment
             }
             if (currentSkillTotal < skillTotal) {
                 leastSkilled = member;
                 skillTotal = currentSkillTotal;
             }
         }
-        quest.addMember(leastSkilled);
-        members.remove(leastSkilled);
-
+        if (leastSkilled.getName() != null) {
+            quest.addMember(leastSkilled);
+            members.remove(leastSkilled);
+        }
     }
 
     public void buildParty() {
