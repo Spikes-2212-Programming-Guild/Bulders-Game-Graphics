@@ -21,9 +21,9 @@
             QuestLoader ql = new QuestLoader();
             ql.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));
             Quest quest = ql.getQuest(request.getParameter("questName"));
-            int gradeCount = 0;
-            if (request.getParameter("gradeCount") == null) {
-                gradeCount = Integer.valueOf(request.getParameter("gradeCount"));
+            int gradeCount = Integer.valueOf(request.getParameter("gradeCount"));
+            if (request.getParameter("gradeCount").equals("")) {
+                gradeCount = 0;
             }
             if (gradeCount < 0) {
                 gradeCount = 0;

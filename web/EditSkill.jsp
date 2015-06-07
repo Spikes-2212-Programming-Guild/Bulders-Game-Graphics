@@ -27,7 +27,7 @@
             skillName = request.getParameter("skillName");
             oldSkill = request.getParameter("oldSkill");
             if (character != null && skillName != null && oldSkill != null && request.getParameter("skillLevel") != null && request.getParameter("skillEXP") != null) {
-                if (skillName.equals("")) {
+                if (skillName.equals("") || request.getParameter("skillLevel").equals("")) {
                     GurnyStaff gurnyStaff = new GurnyStaff();
                     CharacterLoader characterLoader = new CharacterLoader();
                     characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
@@ -35,6 +35,9 @@
                     characterLoader.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
                 } else {
                     skillLevel = Integer.valueOf(request.getParameter("skillLevel"));
+                    if(request.getParameter("skillEXP").equals("")){
+                        skillEXP = 0;
+                    }
                     skillEXP = Integer.valueOf(request.getParameter("skillEXP"));
                     GurnyStaff gurnyStaff = new GurnyStaff();
                     CharacterLoader characterLoader = new CharacterLoader();

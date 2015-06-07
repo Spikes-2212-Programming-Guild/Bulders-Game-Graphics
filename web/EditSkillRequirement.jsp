@@ -25,7 +25,7 @@
             cl.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));
             Quest quest = ql.getQuest(request.getParameter("questName"));
             quest.removeSkill(request.getParameter("oldSkill"));
-            if (!request.getParameter("skillName").equals("")) {
+            if (!request.getParameter("skillName").equals("") || !request.getParameter("level").equals("")) {
                 quest.addSkillRequirment(new Skill(request.getParameter("skillName")), Integer.valueOf(request.getParameter("level")));
             }
             QuestSaver saver = new QuestSaver(quest);
