@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Skill Adder 9000</title>
     </head>
-    <body style="text-align: center">
+    <body style="text-align: center;background-image: url('wood.jpg');color: whitesmoke;">
         <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <%! String character;%>
         <%

@@ -15,7 +15,7 @@
         <title>Register</title>
         <script src="../Javascript/validateInput.js"></script>
     </head>
-    <body style="text-align: center">
+    <body style="text-align: center;background-image: url('../wood.jpg');color: whitesmoke;">
         <h1>Enter Team Name, Team number and Password:</h1>
         <form action="Register.jsp" method="post" onsubmit="return validateNumbers(document.getElementById('number').value)">
             <div style="position: relative; right: 25px">

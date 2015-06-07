@@ -19,7 +19,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Finishing Quest...</title>
     </head>
-    <body>
+    <body style="background-image: url('wood.jpg');color: whitesmoke;">
         <%
             QuestLoader ql = new QuestLoader();
             ql.readQuests((int) session.getAttribute(constants.TEAM_NUMBER));

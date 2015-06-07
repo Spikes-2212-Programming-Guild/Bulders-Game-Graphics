@@ -16,7 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Skill Editor</title>
     </head>
-    <body>
+    <body style="background-image: url('wood.jpg');color: whitesmoke;">
         <%! String character;
             String skillName;
             String oldSkill;

@@ -17,7 +17,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Editing Skill Requirement</title>
     </head>
-    <body>
+    <body style="background-image: url('wood.jpg');color: whitesmoke;">
         <%
             QuestLoader ql = new QuestLoader();
             CharacterLoader cl = new CharacterLoader();

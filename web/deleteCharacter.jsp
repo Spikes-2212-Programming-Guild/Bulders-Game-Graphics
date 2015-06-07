@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Deleting character...</title>
     </head>
-    <body>
+    <body style="background-image: url('wood.jpg');color: whitesmoke;">
         <%
             CharacterLoader cl = new CharacterLoader();
             cl.readCharacters((int) session.getAttribute(constants.TEAM_NUMBER));

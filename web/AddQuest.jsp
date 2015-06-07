@@ -16,7 +16,7 @@
         <title>Art thou prepared?</title>
         <script src="Javascript/validateInput.js"></script>
     </head>
-    <body>
+    <body style="background-image: url('wood.jpg');color: whitesmoke;">
         <input type="button" value="Press L!" onclick="window.location = 'QuestBoard.jsp'" style="position: absolute;right: 20px;top: 30px"/>
         <%!
             String name;
