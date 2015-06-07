@@ -7,13 +7,17 @@
 
 function validateWord(word, sigma) {
     var flag = true;
-    for (var i = 0; i < word.length; i++) {
-        if (sigma.indexOf(word[i]) === -1) {
-            flag = false;
-            alert("Invalid input! Character '" + word[i] + "' is invalid!")
-            break;
-        }
+    if (word.length === 0){
+        flag = false;
+        alert("Empty input!");
     }
+        for (var i = 0; i < word.length; i++) {
+            if (sigma.indexOf(word[i]) === -1) {
+                flag = false;
+                alert("Invalid input! Character '" + word[i] + "' is invalid!")
+                break;
+            }
+        }
     return flag;
 }
 
